@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PocketRWX</title>
+  <style>
+    html, body { margin:0; height:100%; background:#080808; color:white; font-family:system-ui; overflow:hidden; }
+    #bar { position:fixed; top:0; left:0; right:0; z-index:5; padding:10px; background:rgba(0,0,0,.65); display:flex; gap:8px; align-items:center; }
+    button, input { font:inherit; }
+    #info { opacity:.8; font-size:13px; }
+  </style>
+</head>
+<body>
+  <div id="bar">
+    <input id="file" type="file" accept=".rwx,.txt" />
+    <button id="sample">Load Sample</button>
+    <span id="info">PocketRWX</span>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
