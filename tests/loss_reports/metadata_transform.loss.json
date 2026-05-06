@@ -65,11 +65,23 @@
     }
   },
   "acceptable_command_loss": {
+    "transformbegin": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "transform block markers are represented by baked sidecar metadata"
+    },
     "quad": {
       "before": 1,
       "after": 0,
       "delta": -1,
       "reason": "faces are triangulated for GLB compatibility"
+    },
+    "transformend": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "transform block markers are represented by baked sidecar metadata"
     },
     "triangle": {
       "before": 0,
@@ -79,11 +91,6 @@
     }
   },
   "real_command_loss": {
-    "transformbegin": {
-      "before": 1,
-      "after": 0,
-      "delta": -1
-    },
     "translate": {
       "before": 1,
       "after": 0,
@@ -95,11 +102,6 @@
       "delta": -1
     },
     "scale": {
-      "before": 1,
-      "after": 0,
-      "delta": -1
-    },
-    "transformend": {
       "before": 1,
       "after": 0,
       "delta": -1

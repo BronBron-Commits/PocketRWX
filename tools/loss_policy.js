@@ -6,11 +6,16 @@ export function classifyCommandLoss(commandLoss) {
     if (
       cmd === "quad" ||
       cmd === "polygon" ||
-      cmd === "triangle"
+      cmd === "triangle" ||
+      cmd === "transformbegin" ||
+      cmd === "transformend"
     ) {
       acceptable[cmd] = {
         ...change,
-        reason: "faces are triangulated for GLB compatibility"
+        reason:
+          cmd === "transformbegin" || cmd === "transformend"
+            ? "transform block markers are represented by baked sidecar metadata"
+            : "faces are triangulated for GLB compatibility"
       };
     } else {
       real[cmd] = change;

@@ -1,0 +1,58 @@
+{
+  "original": "tests/fixtures/metadata_transform.rwx",
+  "restored": "tests/sidecar_reports/metadata_transform.sidecar.roundtrip.rwx",
+  "original_commands": {
+    "modelbegin": 1,
+    "clumpbegin": 1,
+    "transformbegin": 1,
+    "translate": 1,
+    "rotate": 1,
+    "scale": 1,
+    "color": 1,
+    "vertex": 4,
+    "quad": 1,
+    "transformend": 1,
+    "clumpend": 1,
+    "modelend": 1
+  },
+  "restored_commands": {
+    "modelbegin": 1,
+    "clumpbegin": 1,
+    "translate": 1,
+    "rotate": 1,
+    "scale": 1,
+    "color": 1,
+    "vertex": 4,
+    "triangle": 2,
+    "clumpend": 1,
+    "modelend": 1
+  },
+  "acceptable_command_loss": {
+    "transformbegin": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "transform block markers are represented by baked sidecar metadata"
+    },
+    "quad": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "faces are triangulated for GLB compatibility"
+    },
+    "transformend": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "transform block markers are represented by baked sidecar metadata"
+    },
+    "triangle": {
+      "before": 0,
+      "after": 2,
+      "delta": 2,
+      "reason": "faces are triangulated for GLB compatibility"
+    }
+  },
+  "real_command_loss": {},
+  "unsupported_original_commands": []
+}
