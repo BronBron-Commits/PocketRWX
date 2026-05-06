@@ -44,7 +44,10 @@ export function threeToGLB(object3d) {
       object3d,
       result => resolve(result),
       error => reject(error),
-      { binary: true }
+      {
+        binary: true,
+        includeCustomExtensions: true
+      }
     );
   });
 }
@@ -56,7 +59,16 @@ export function glbToThree(arrayBuffer) {
     loader.parse(
       arrayBuffer,
       "",
-      gltf => resolve(gltf.scene),
+      gltf => {
+        const scene = gltf.scene;
+
+        scene.userData.gltf = {
+          asset: gltf.asset || null,
+          parser: null
+        };
+
+        resolve(scene);
+      },
       error => reject(error)
     );
   });

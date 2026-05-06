@@ -19,7 +19,9 @@
     "vertices": 4,
     "triangles": 2,
     "materials": 1,
-    "textures": [],
+    "textures": [
+      "brick.jpg"
+    ],
     "bounds": {
       "x": 1,
       "y": 1,
@@ -31,7 +33,9 @@
     "vertices": 4,
     "triangles": 2,
     "materials": 1,
-    "textures": [],
+    "textures": [
+      "brick.jpg"
+    ],
     "bounds": {
       "x": 1,
       "y": 1,
@@ -43,7 +47,9 @@
     "vertices": 4,
     "triangles": 2,
     "materials": 1,
-    "textures": [],
+    "textures": [
+      "brick.jpg"
+    ],
     "bounds": {
       "x": 1,
       "y": 1,
@@ -68,8 +74,12 @@
       1
     ],
     "textures": [
-      [],
-      []
+      [
+        "brick.jpg"
+      ],
+      [
+        "brick.jpg"
+      ]
     ],
     "bounds": [
       {
@@ -103,8 +113,12 @@
       1
     ],
     "textures": [
-      [],
-      []
+      [
+        "brick.jpg"
+      ],
+      [
+        "brick.jpg"
+      ]
     ],
     "bounds": [
       {

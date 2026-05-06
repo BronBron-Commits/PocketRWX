@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "test:convert": "node tools/run_conversion_tests.js"
+    "test:convert": "node tools/run_conversion_tests.js",
+    "inspect:loss": "node tools/inspect_loss.js"
   },
   "dependencies": {
     "vite": "latest",

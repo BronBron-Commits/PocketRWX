@@ -363,9 +363,14 @@ export function rwxToThree(text) {
 
   root.name = "RWX_Root";
 
-  root.userData.rwx = {
+  const rwxMetadata = {
     transforms:
       parseTransformMetadata(text)
+  };
+
+  root.userData.rwx = rwxMetadata;
+  root.userData.gltfExtensions = {
+    EXT_pocket_rwx: rwxMetadata
   };
 
   root.add(mesh);
@@ -380,7 +385,9 @@ export function threeToRWX(root) {
   lines.push("ClumpBegin");
 
   const transformBlocks =
-    root.userData?.rwx?.transforms || [];
+    root.userData?.rwx?.transforms ||
+    root.userData?.gltfExtensions?.EXT_pocket_rwx?.transforms ||
+    [];
 
   for (const block of transformBlocks) {
     lines.push("TransformBegin");
