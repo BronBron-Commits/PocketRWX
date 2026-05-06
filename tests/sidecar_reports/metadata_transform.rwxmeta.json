@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "format": "PocketRWXSidecar",
+  "rwx": {
+    "transforms": [
+      [
+        "Translate 4 1 0",
+        "Rotate 0 0 1 90",
+        "Scale 2 1 1"
+      ]
+    ]
+  }
+}
