@@ -1,6 +1,7 @@
 {
   "version": 1,
   "format": "PocketRWXSidecar",
+  "mode": "baked",
   "rwx": {
     "transforms": [
       [

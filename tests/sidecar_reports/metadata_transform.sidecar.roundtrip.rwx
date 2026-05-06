@@ -1,10 +1,10 @@
 ModelBegin
 ClumpBegin
-TransformBegin
-Translate 4 1 0
-Rotate 0 0 1 90
-Scale 2 1 1
-TransformEnd
+# PocketRWX: original transforms were baked into vertex positions
+# PocketRWX: sidecar mode = baked
+# original Translate 4 1 0
+# original Rotate 0 0 1 90
+# original Scale 2 1 1
 Color 0.8 0.2 1
 Vertex 4 1 0 UV 0 0
 Vertex 4 3 0 UV 0 0

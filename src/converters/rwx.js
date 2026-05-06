@@ -384,19 +384,38 @@ export function threeToRWX(root) {
   lines.push("ModelBegin");
   lines.push("ClumpBegin");
 
+  const rwxMeta =
+    root.userData?.rwx ||
+    root.userData?.gltfExtensions?.EXT_pocket_rwx ||
+    {};
+
   const transformBlocks =
-    root.userData?.rwx?.transforms ||
-    root.userData?.gltfExtensions?.EXT_pocket_rwx?.transforms ||
-    [];
+    rwxMeta.transforms || [];
 
-  for (const block of transformBlocks) {
-    lines.push("TransformBegin");
+  const sidecarMode =
+    rwxMeta.sidecarMode ||
+    rwxMeta.mode ||
+    "structural";
 
-    for (const line of block) {
-      lines.push(line);
+  if (sidecarMode === "structural") {
+    for (const block of transformBlocks) {
+      lines.push("TransformBegin");
+
+      for (const line of block) {
+        lines.push(line);
+      }
+
+      lines.push("TransformEnd");
     }
+  } else if (transformBlocks.length) {
+    lines.push("# PocketRWX: original transforms were baked into vertex positions");
+    lines.push("# PocketRWX: sidecar mode = baked");
 
-    lines.push("TransformEnd");
+    for (const block of transformBlocks) {
+      for (const line of block) {
+        lines.push(`# original ${line}`);
+      }
+    }
   }
 
   let vertexOffset = 1;
