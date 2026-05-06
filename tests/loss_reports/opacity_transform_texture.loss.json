@@ -1,0 +1,139 @@
+{
+  "input": "tests/fixtures/opacity_transform_texture.rwx",
+  "outputs": {
+    "glb": "tests/loss_reports/opacity_transform_texture.roundtrip.glb",
+    "rwx": "tests/loss_reports/opacity_transform_texture.roundtrip.rwx"
+  },
+  "original_rwx_commands": {
+    "modelbegin": 1,
+    "clumpbegin": 1,
+    "transformbegin": 1,
+    "translate": 1,
+    "rotate": 1,
+    "scale": 1,
+    "texture": 1,
+    "surface": 1,
+    "opacity": 1,
+    "color": 1,
+    "vertex": 4,
+    "quad": 1,
+    "transformend": 1,
+    "clumpend": 1,
+    "modelend": 1
+  },
+  "roundtrip_rwx_commands": {
+    "modelbegin": 1,
+    "clumpbegin": 1,
+    "texture": 1,
+    "surface": 1,
+    "opacity": 1,
+    "color": 1,
+    "vertex": 4,
+    "triangle": 2,
+    "clumpend": 1,
+    "modelend": 1
+  },
+  "command_count_loss": {
+    "transformbegin": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "translate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "rotate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "scale": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "quad": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "transformend": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "triangle": {
+      "before": 0,
+      "after": 2,
+      "delta": 2
+    }
+  },
+  "unsupported_original_commands": [],
+  "semantic_loss_notes": [
+    "RWX command structure is flattened during Three/GLB conversion.",
+    "Quad and Polygon commands become Triangle commands.",
+    "TransformBegin/TransformEnd are baked into vertex positions.",
+    "Texture filenames are not yet preserved unless converter stores them in material userData.",
+    "Surface and Opacity are not fully round-tripped yet unless threeToRWX writes them back.",
+    "Original formatting, comments, command order, and clump boundaries may be lost."
+  ],
+  "parsed_rwx_summary": {
+    "vertices": 4,
+    "faces": 2,
+    "uvs": 4,
+    "color": [
+      0.2,
+      0.8,
+      1
+    ]
+  },
+  "stats": {
+    "original_rwx_scene": {
+      "meshes": 1,
+      "vertices": 4,
+      "triangles": 2,
+      "materials": 1,
+      "textures": [
+        "glass.png"
+      ],
+      "bounds": {
+        "x": 2.1213,
+        "y": 2.1213,
+        "z": 0
+      }
+    },
+    "after_glb_scene": {
+      "meshes": 1,
+      "vertices": 4,
+      "triangles": 2,
+      "materials": 1,
+      "textures": [
+        "glass.png"
+      ],
+      "bounds": {
+        "x": 2.1213,
+        "y": 2.1213,
+        "z": 0
+      }
+    },
+    "after_rwx_roundtrip_scene": {
+      "meshes": 1,
+      "vertices": 4,
+      "triangles": 2,
+      "materials": 1,
+      "textures": [
+        "glass.png"
+      ],
+      "bounds": {
+        "x": 2.1213,
+        "y": 2.1213,
+        "z": 0
+      }
+    }
+  },
+  "scene_loss_rwx_to_glb": {},
+  "scene_loss_glb_back_to_rwx": {},
+  "scene_loss_full_roundtrip": {}
+}

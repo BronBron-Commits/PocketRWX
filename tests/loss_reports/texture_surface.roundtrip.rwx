@@ -1,0 +1,13 @@
+ModelBegin
+ClumpBegin
+Texture brick.jpg
+Surface 0.2 0.8 0.1
+Color 1 1 1
+Vertex 0 0 0 UV 0 0
+Vertex 1 0 0 UV 1 0
+Vertex 1 1 0 UV 1 1
+Vertex 0 1 0 UV 0 1
+Triangle 1 2 3
+Triangle 1 3 4
+ClumpEnd
+ModelEnd

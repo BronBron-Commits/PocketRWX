@@ -6,6 +6,9 @@ export function parseRWX(text) {
   const faces = [];
 
   let color = [0.8, 0.8, 0.8];
+  let texture = null;
+  let surface = null;
+  let opacity = 1;
 
   const transformStack = [
     new THREE.Matrix4()
@@ -70,38 +73,83 @@ export function parseRWX(text) {
     }
 
     if (cmd === "rotate") {
-      const rx =
-        THREE.MathUtils.degToRad(
-          Number(parts[1])
-        );
+      let m;
 
-      const ry =
-        THREE.MathUtils.degToRad(
-          Number(parts[2])
-        );
+      if (parts.length >= 5) {
+        const axis =
+          new THREE.Vector3(
+            Number(parts[1]),
+            Number(parts[2]),
+            Number(parts[3])
+          ).normalize();
 
-      const rz =
-        THREE.MathUtils.degToRad(
-          Number(parts[3])
-        );
-
-      const euler =
-        new THREE.Euler(
-          rx,
-          ry,
-          rz,
-          "XYZ"
-        );
-
-      const m =
-        new THREE.Matrix4()
-          .makeRotationFromEuler(
-            euler
+        const angle =
+          THREE.MathUtils.degToRad(
+            Number(parts[4])
           );
+
+        m =
+          new THREE.Matrix4()
+            .makeRotationAxis(
+              axis,
+              angle
+            );
+      } else {
+        const rx =
+          THREE.MathUtils.degToRad(
+            Number(parts[1])
+          );
+
+        const ry =
+          THREE.MathUtils.degToRad(
+            Number(parts[2])
+          );
+
+        const rz =
+          THREE.MathUtils.degToRad(
+            Number(parts[3])
+          );
+
+        m =
+          new THREE.Matrix4()
+            .makeRotationFromEuler(
+              new THREE.Euler(
+                rx,
+                ry,
+                rz,
+                "XYZ"
+              )
+            );
+      }
 
       transformStack[
         transformStack.length - 1
       ].multiply(m);
+
+      continue;
+    }
+
+    if (cmd === "texture") {
+      texture =
+        parts
+          .slice(1)
+          .join(" ") || null;
+
+      continue;
+    }
+
+    if (cmd === "surface") {
+      surface =
+        parts
+          .slice(1)
+          .map(Number);
+
+      continue;
+    }
+
+    if (cmd === "opacity") {
+      opacity =
+        Number(parts[1]);
 
       continue;
     }
@@ -219,7 +267,10 @@ export function parseRWX(text) {
     vertices,
     uvs,
     faces,
-    color
+    color,
+    texture,
+    surface,
+    opacity
   };
 }
 
@@ -277,18 +328,26 @@ export function rwxToThree(text) {
   geometry.computeVertexNormals();
 
   const material =
-    new THREE.MeshStandardMaterial(
-      {
-        color:
-          new THREE.Color(
-            data.color[0],
-            data.color[1],
-            data.color[2]
-          ),
-        side:
-          THREE.DoubleSide
-      }
-    );
+    new THREE.MeshStandardMaterial({
+      color:
+        new THREE.Color(
+          data.color[0],
+          data.color[1],
+          data.color[2]
+        ),
+      side:
+        THREE.DoubleSide,
+      transparent:
+        data.opacity < 1,
+      opacity:
+        data.opacity
+    });
+
+  material.userData.rwx = {
+    texture: data.texture,
+    surface: data.surface,
+    opacity: data.opacity
+  };
 
   const mesh =
     new THREE.Mesh(
@@ -358,6 +417,30 @@ export function threeToRWX(root) {
         0.8,
         0.8
       );
+
+    const rwx =
+      mat?.userData?.rwx || {};
+
+    if (rwx.texture) {
+      lines.push(
+        `Texture ${rwx.texture}`
+      );
+    }
+
+    if (rwx.surface) {
+      lines.push(
+        `Surface ${rwx.surface.join(" ")}`
+      );
+    }
+
+    if (
+      typeof rwx.opacity === "number" &&
+      rwx.opacity < 1
+    ) {
+      lines.push(
+        `Opacity ${rwx.opacity}`
+      );
+    }
 
     lines.push(
       `Color ${color.r} ${color.g} ${color.b}`
