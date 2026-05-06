@@ -8,7 +8,8 @@
     "test:convert": "node tools/run_conversion_tests.js",
     "inspect:loss": "node tools/inspect_loss.js",
     "sidecar:export": "node tools/export_with_sidecar.js",
-    "sidecar:import": "node tools/import_with_sidecar.js"
+    "sidecar:import": "node tools/import_with_sidecar.js",
+    "sidecar:roundtrip": "node tools/sidecar_roundtrip.js"
   },
   "dependencies": {
     "vite": "latest",
