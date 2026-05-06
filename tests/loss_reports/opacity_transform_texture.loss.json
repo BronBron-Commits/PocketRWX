@@ -71,14 +71,6 @@
     }
   },
   "unsupported_original_commands": [],
-  "semantic_loss_notes": [
-    "RWX command structure is flattened during Three/GLB conversion.",
-    "Quad and Polygon commands become Triangle commands.",
-    "TransformBegin/TransformEnd are baked into vertex positions.",
-    "Texture filenames are not yet preserved unless converter stores them in material userData.",
-    "Surface and Opacity are not fully round-tripped yet unless threeToRWX writes them back.",
-    "Original formatting, comments, command order, and clump boundaries may be lost."
-  ],
   "parsed_rwx_summary": {
     "vertices": 4,
     "faces": 2,
@@ -87,7 +79,14 @@
       0.2,
       0.8,
       1
-    ]
+    ],
+    "texture": "glass.png",
+    "surface": [
+      0.1,
+      0.9,
+      0.4
+    ],
+    "opacity": 0.5
   },
   "stats": {
     "original_rwx_scene": {
@@ -133,7 +132,5 @@
       }
     }
   },
-  "scene_loss_rwx_to_glb": {},
-  "scene_loss_glb_back_to_rwx": {},
   "scene_loss_full_roundtrip": {}
 }
