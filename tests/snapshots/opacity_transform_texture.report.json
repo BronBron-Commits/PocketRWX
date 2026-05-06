@@ -1,0 +1,123 @@
+{
+  "input": "opacity_transform_texture.rwx",
+  "expected": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 1.526,
+      "y": 1.526,
+      "z": 0
+    }
+  },
+  "baselineCheck": {
+    "pass": true,
+    "problems": []
+  },
+  "rwx_original": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "materials": 1,
+    "textures": [],
+    "bounds": {
+      "x": 1.526,
+      "y": 1.526,
+      "z": 0
+    }
+  },
+  "after_glb": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "materials": 1,
+    "textures": [],
+    "bounds": {
+      "x": 1.526,
+      "y": 1.526,
+      "z": 0
+    }
+  },
+  "after_rwx_roundtrip": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "materials": 1,
+    "textures": [],
+    "bounds": {
+      "x": 1.526,
+      "y": 1.526,
+      "z": 0
+    }
+  },
+  "glbCompare": {
+    "meshes": [
+      1,
+      1
+    ],
+    "vertices": [
+      4,
+      4
+    ],
+    "triangles": [
+      2,
+      2
+    ],
+    "materials": [
+      1,
+      1
+    ],
+    "textures": [
+      [],
+      []
+    ],
+    "bounds": [
+      {
+        "x": 1.526,
+        "y": 1.526,
+        "z": 0
+      },
+      {
+        "x": 1.526,
+        "y": 1.526,
+        "z": 0
+      }
+    ],
+    "pass": true
+  },
+  "rwxCompare": {
+    "meshes": [
+      1,
+      1
+    ],
+    "vertices": [
+      4,
+      4
+    ],
+    "triangles": [
+      2,
+      2
+    ],
+    "materials": [
+      1,
+      1
+    ],
+    "textures": [
+      [],
+      []
+    ],
+    "bounds": [
+      {
+        "x": 1.526,
+        "y": 1.526,
+        "z": 0
+      },
+      {
+        "x": 1.526,
+        "y": 1.526,
+        "z": 0
+      }
+    ],
+    "pass": true
+  }
+}
