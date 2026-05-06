@@ -6,12 +6,41 @@ import { sceneStats, compareStats } from "./conversion_stats.js";
 
 const fixturesDir = "tests/fixtures";
 const outDir = "tests/snapshots";
+const expectedPath = "tests/expected_conversion_stats.json";
 
 fs.mkdirSync(outDir, { recursive: true });
+
+const expected = fs.existsSync(expectedPath)
+  ? JSON.parse(fs.readFileSync(expectedPath, "utf8"))
+  : {};
 
 const files = fs.readdirSync(fixturesDir).filter(f => f.endsWith(".rwx"));
 
 let failed = 0;
+
+function checkExpected(base, stats) {
+  const exp = expected[base];
+
+  if (!exp) {
+    return {
+      pass: false,
+      reason: "missing expected baseline"
+    };
+  }
+
+  const problems = [];
+
+  for (const key of ["meshes", "vertices", "triangles"]) {
+    if (stats[key] !== exp[key]) {
+      problems.push(`${key}: expected ${exp[key]}, got ${stats[key]}`);
+    }
+  }
+
+  return {
+    pass: problems.length === 0,
+    problems
+  };
+}
 
 for (const file of files) {
   const inputPath = path.join(fixturesDir, file);
@@ -23,6 +52,8 @@ for (const file of files) {
 
   const sceneA = rwxToThree(rwxText);
   const statsA = sceneStats(sceneA);
+
+  const baselineCheck = checkExpected(base, statsA);
 
   const glb = await threeToGLB(sceneA);
   fs.writeFileSync(path.join(outDir, `${base}.glb`), Buffer.from(glb));
@@ -41,6 +72,8 @@ for (const file of files) {
 
   const report = {
     input: file,
+    expected: expected[base] || null,
+    baselineCheck,
     rwx_original: statsA,
     after_glb: statsB,
     after_rwx_roundtrip: statsC,
@@ -55,7 +88,7 @@ for (const file of files) {
 
   console.log(JSON.stringify(report, null, 2));
 
-  if (!glbCompare.pass || !rwxCompare.pass) {
+  if (!baselineCheck.pass || !glbCompare.pass || !rwxCompare.pass) {
     failed++;
   }
 }
