@@ -70,6 +70,47 @@
       "delta": 2
     }
   },
+  "acceptable_command_loss": {
+    "quad": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "faces are triangulated for GLB compatibility"
+    },
+    "triangle": {
+      "before": 0,
+      "after": 2,
+      "delta": 2,
+      "reason": "faces are triangulated for GLB compatibility"
+    }
+  },
+  "real_command_loss": {
+    "transformbegin": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "translate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "rotate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "scale": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "transformend": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    }
+  },
   "unsupported_original_commands": [],
   "parsed_rwx_summary": {
     "vertices": 4,

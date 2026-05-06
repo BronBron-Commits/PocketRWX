@@ -3,6 +3,7 @@ import path from "path";
 import { rwxToThree, threeToRWX, parseRWX } from "../src/converters/rwx.js";
 import { threeToGLB, glbToThree } from "../src/converters/glb.js";
 import { sceneStats } from "./conversion_stats.js";
+import { classifyCommandLoss } from "./loss_policy.js";
 
 const input = process.argv[2];
 
@@ -143,6 +144,7 @@ const statsC = sceneStats(sceneC);
 const roundtripCommands = commandStats(roundtripRWX);
 
 const commandLoss = diffCommandCounts(originalCommands, roundtripCommands);
+const classifiedLoss = classifyCommandLoss(commandLoss);
 const sceneLossFull = compareSceneStats(statsA, statsC);
 
 const report = {
@@ -154,6 +156,8 @@ const report = {
   original_rwx_commands: originalCommands.commands,
   roundtrip_rwx_commands: roundtripCommands.commands,
   command_count_loss: commandLoss,
+  acceptable_command_loss: classifiedLoss.acceptable,
+  real_command_loss: classifiedLoss.real,
   unsupported_original_commands: originalCommands.unsupported,
   parsed_rwx_summary: {
     vertices: parsed.vertices.length,
@@ -189,8 +193,16 @@ printTable("Scene stats", [
 ]);
 
 printTable(
-  "Command changes",
-  Object.entries(commandLoss).map(([cmd, v]) => {
+  "Acceptable command changes",
+  Object.entries(classifiedLoss.acceptable).map(([cmd, v]) => {
+    const sign = v.delta > 0 ? "+" : "";
+    return `${cmd}: ${v.before} -> ${v.after} (${sign}${v.delta}) ${v.reason ? "- " + v.reason : ""}`;
+  })
+);
+
+printTable(
+  "Real command loss",
+  Object.entries(classifiedLoss.real).map(([cmd, v]) => {
     const sign = v.delta > 0 ? "+" : "";
     return `${cmd}: ${v.before} -> ${v.after} (${sign}${v.delta})`;
   })
@@ -208,7 +220,7 @@ printTable("Outputs", [
 ]);
 
 if (
-  Object.keys(commandLoss).length ||
+  Object.keys(classifiedLoss.real).length ||
   Object.keys(sceneLossFull).length ||
   originalCommands.unsupported.length
 ) {

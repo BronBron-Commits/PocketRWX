@@ -38,15 +38,22 @@
       "delta": 2
     }
   },
+  "acceptable_command_loss": {
+    "quad": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "faces are triangulated for GLB compatibility"
+    },
+    "triangle": {
+      "before": 0,
+      "after": 2,
+      "delta": 2,
+      "reason": "faces are triangulated for GLB compatibility"
+    }
+  },
+  "real_command_loss": {},
   "unsupported_original_commands": [],
-  "semantic_loss_notes": [
-    "RWX command structure is flattened during Three/GLB conversion.",
-    "Quad and Polygon commands become Triangle commands.",
-    "TransformBegin/TransformEnd are baked into vertex positions.",
-    "Texture filenames are not yet preserved unless converter stores them in material userData.",
-    "Surface and Opacity are not fully round-tripped yet unless threeToRWX writes them back.",
-    "Original formatting, comments, command order, and clump boundaries may be lost."
-  ],
   "parsed_rwx_summary": {
     "vertices": 4,
     "faces": 2,
@@ -55,7 +62,14 @@
       1,
       1,
       1
-    ]
+    ],
+    "texture": "brick.jpg",
+    "surface": [
+      0.2,
+      0.8,
+      0.1
+    ],
+    "opacity": 1
   },
   "stats": {
     "original_rwx_scene": {
@@ -101,7 +115,5 @@
       }
     }
   },
-  "scene_loss_rwx_to_glb": {},
-  "scene_loss_glb_back_to_rwx": {},
   "scene_loss_full_roundtrip": {}
 }
