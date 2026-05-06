@@ -78,5 +78,15 @@
       "y": 1,
       "z": 0
     }
+  },
+  "texture_surface": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    }
   }
 }

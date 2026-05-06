@@ -1,12 +1,12 @@
 {
-  "input": "polygon_ngon.rwx",
+  "input": "texture_surface.rwx",
   "expected": {
     "meshes": 1,
-    "vertices": 5,
-    "triangles": 3,
+    "vertices": 4,
+    "triangles": 2,
     "bounds": {
-      "x": 1.6,
-      "y": 1.2,
+      "x": 1,
+      "y": 1,
       "z": 0
     }
   },
@@ -16,37 +16,37 @@
   },
   "rwx_original": {
     "meshes": 1,
-    "vertices": 5,
-    "triangles": 3,
+    "vertices": 4,
+    "triangles": 2,
     "materials": 1,
     "textures": [],
     "bounds": {
-      "x": 1.6,
-      "y": 1.2,
+      "x": 1,
+      "y": 1,
       "z": 0
     }
   },
   "after_glb": {
     "meshes": 1,
-    "vertices": 5,
-    "triangles": 3,
+    "vertices": 4,
+    "triangles": 2,
     "materials": 1,
     "textures": [],
     "bounds": {
-      "x": 1.6,
-      "y": 1.2,
+      "x": 1,
+      "y": 1,
       "z": 0
     }
   },
   "after_rwx_roundtrip": {
     "meshes": 1,
-    "vertices": 5,
-    "triangles": 3,
+    "vertices": 4,
+    "triangles": 2,
     "materials": 1,
     "textures": [],
     "bounds": {
-      "x": 1.6,
-      "y": 1.2,
+      "x": 1,
+      "y": 1,
       "z": 0
     }
   },
@@ -56,12 +56,12 @@
       1
     ],
     "vertices": [
-      5,
-      5
+      4,
+      4
     ],
     "triangles": [
-      3,
-      3
+      2,
+      2
     ],
     "materials": [
       1,
@@ -73,13 +73,13 @@
     ],
     "bounds": [
       {
-        "x": 1.6,
-        "y": 1.2,
+        "x": 1,
+        "y": 1,
         "z": 0
       },
       {
-        "x": 1.6,
-        "y": 1.2,
+        "x": 1,
+        "y": 1,
         "z": 0
       }
     ],
@@ -91,12 +91,12 @@
       1
     ],
     "vertices": [
-      5,
-      5
+      4,
+      4
     ],
     "triangles": [
-      3,
-      3
+      2,
+      2
     ],
     "materials": [
       1,
@@ -108,13 +108,13 @@
     ],
     "bounds": [
       {
-        "x": 1.6,
-        "y": 1.2,
+        "x": 1,
+        "y": 1,
         "z": 0
       },
       {
-        "x": 1.6,
-        "y": 1.2,
+        "x": 1,
+        "y": 1,
         "z": 0
       }
     ],

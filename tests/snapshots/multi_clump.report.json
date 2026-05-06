@@ -19,6 +19,7 @@
     "vertices": 8,
     "triangles": 4,
     "materials": 1,
+    "textures": [],
     "bounds": {
       "x": 4,
       "y": 1,
@@ -30,6 +31,7 @@
     "vertices": 8,
     "triangles": 4,
     "materials": 1,
+    "textures": [],
     "bounds": {
       "x": 4,
       "y": 1,
@@ -41,6 +43,7 @@
     "vertices": 8,
     "triangles": 4,
     "materials": 1,
+    "textures": [],
     "bounds": {
       "x": 4,
       "y": 1,
@@ -63,6 +66,10 @@
     "materials": [
       1,
       1
+    ],
+    "textures": [
+      [],
+      []
     ],
     "bounds": [
       {
@@ -94,6 +101,10 @@
     "materials": [
       1,
       1
+    ],
+    "textures": [
+      [],
+      []
     ],
     "bounds": [
       {
