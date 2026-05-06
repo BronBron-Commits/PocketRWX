@@ -219,14 +219,28 @@ printTable("Outputs", [
   `rwx:    ${rwxPath}`
 ]);
 
-if (
-  Object.keys(classifiedLoss.real).length ||
-  Object.keys(sceneLossFull).length ||
-  originalCommands.unsupported.length
-) {
-  console.log("");
-  console.log("LOSS DETECTED");
+const realLossCount =
+  Object.keys(classifiedLoss.real).length +
+  Object.keys(sceneLossFull).length +
+  originalCommands.unsupported.length;
+
+console.log("");
+console.log("=".repeat(72));
+
+if (realLossCount > 0) {
+  console.log("FINAL RESULT: LOSS DETECTED");
+  console.log(`Real losses: ${realLossCount}`);
 } else {
-  console.log("");
-  console.log("No measurable loss detected.");
+  console.log("FINAL RESULT: ROUNDTRIP CLEAN");
+  console.log("No measurable conversion loss detected.");
 }
+
+console.log("=".repeat(72));
+
+console.log("");
+console.log("Summary");
+console.log("-------");
+console.log(`Input:  ${input}`);
+console.log(`GLB:    ${glbPath}`);
+console.log(`RWX:    ${rwxPath}`);
+console.log(`Report: ${reportPath}`);
