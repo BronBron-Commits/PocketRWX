@@ -56,8 +56,16 @@ export function glbToThree(arrayBuffer) {
   return new Promise((resolve, reject) => {
     const loader = new GLTFLoader();
 
+    const input =
+      Buffer.isBuffer(arrayBuffer)
+        ? arrayBuffer.buffer.slice(
+            arrayBuffer.byteOffset,
+            arrayBuffer.byteOffset + arrayBuffer.byteLength
+          )
+        : arrayBuffer;
+
     loader.parse(
-      arrayBuffer,
+      input,
       "",
       gltf => {
         const scene = gltf.scene;

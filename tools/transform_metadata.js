@@ -1,43 +1,35 @@
 export function parseTransformMetadata(text) {
-  const transforms = [];
-  const stack = [];
+  const commands = [];
+  let depth = 0;
 
   for (const raw of text.split(/\r?\n/)) {
     const line = raw.trim();
 
-    if (!line || line.startsWith("#")) {
-      continue;
-    }
+    if (!line || line.startsWith("#")) continue;
 
-    const parts = line.split(/\s+/);
-    const cmd = parts[0].toLowerCase();
+    const cmd = line.split(/\s+/)[0].toLowerCase();
 
     if (cmd === "transformbegin") {
-      stack.push([]);
+      depth++;
       continue;
     }
 
     if (cmd === "transformend") {
-      const block = stack.pop();
-
-      if (block && block.length) {
-        transforms.push(block);
-      }
-
+      depth = Math.max(0, depth - 1);
       continue;
     }
 
     if (
-      stack.length &&
+      depth > 0 &&
       (
         cmd === "translate" ||
         cmd === "rotate" ||
         cmd === "scale"
       )
     ) {
-      stack[stack.length - 1].push(line);
+      commands.push(line);
     }
   }
 
-  return transforms;
+  return commands.length ? [commands] : [];
 }

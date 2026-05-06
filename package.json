@@ -10,7 +10,9 @@
     "sidecar:export": "node tools/export_with_sidecar.js",
     "sidecar:import": "node tools/import_with_sidecar.js",
     "sidecar:roundtrip": "node tools/sidecar_roundtrip.js",
-    "sidecar:inspect": "node tools/sidecar_inspect.js"
+    "sidecar:inspect": "node tools/sidecar_inspect.js",
+    "sidecar:inspect-all": "node tools/sidecar_inspect_all.js",
+    "sidecar:inspect:all": "node tools/inspect_all_sidecars.js"
   },
   "dependencies": {
     "vite": "latest",

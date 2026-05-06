@@ -20,6 +20,15 @@ function run(command, args) {
   }
 }
 
+const base =
+  input
+    .split("/")
+    .pop()
+    .replace(/\.[^.]+$/, "");
+
+const restored =
+  `tests/sidecar_reports/${base}.sidecar.roundtrip.rwx`;
+
 run("node", [
   "tools/sidecar_roundtrip.js",
   input
@@ -28,6 +37,12 @@ run("node", [
 run("node", [
   "tools/inspect_loss.js",
   input
+]);
+
+run("node", [
+  "tools/inspect_sidecar_loss.js",
+  input,
+  restored
 ]);
 
 console.log("");
