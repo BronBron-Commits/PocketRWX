@@ -1,8 +1,8 @@
 {
-  "input": "two_materials.rwx",
+  "input": "translated_quad.rwx",
   "expected": {
     "meshes": 1,
-    "vertices": 6,
+    "vertices": 4,
     "triangles": 2,
     "bounds": {
       "x": 1,
@@ -16,7 +16,7 @@
   },
   "rwx_original": {
     "meshes": 1,
-    "vertices": 6,
+    "vertices": 4,
     "triangles": 2,
     "materials": 1,
     "bounds": {
@@ -27,7 +27,7 @@
   },
   "after_glb": {
     "meshes": 1,
-    "vertices": 6,
+    "vertices": 4,
     "triangles": 2,
     "materials": 1,
     "bounds": {
@@ -38,7 +38,7 @@
   },
   "after_rwx_roundtrip": {
     "meshes": 1,
-    "vertices": 6,
+    "vertices": 4,
     "triangles": 2,
     "materials": 1,
     "bounds": {
@@ -53,8 +53,8 @@
       1
     ],
     "vertices": [
-      6,
-      6
+      4,
+      4
     ],
     "triangles": [
       2,
@@ -84,8 +84,8 @@
       1
     ],
     "vertices": [
-      6,
-      6
+      4,
+      4
     ],
     "triangles": [
       2,

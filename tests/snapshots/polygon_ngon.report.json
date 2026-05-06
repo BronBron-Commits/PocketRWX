@@ -1,5 +1,19 @@
 {
   "input": "polygon_ngon.rwx",
+  "expected": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 3,
+    "bounds": {
+      "x": 1.6,
+      "y": 1.2,
+      "z": 0
+    }
+  },
+  "baselineCheck": {
+    "pass": true,
+    "problems": []
+  },
   "rwx_original": {
     "meshes": 1,
     "vertices": 5,

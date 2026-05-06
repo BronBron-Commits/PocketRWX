@@ -2,21 +2,81 @@
   "simple_quad": {
     "meshes": 1,
     "vertices": 4,
-    "triangles": 2
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    }
   },
   "two_materials": {
     "meshes": 1,
     "vertices": 6,
-    "triangles": 2
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    }
   },
   "pyramid": {
     "meshes": 1,
     "vertices": 5,
-    "triangles": 6
+    "triangles": 6,
+    "bounds": {
+      "x": 2,
+      "y": 1.5,
+      "z": 2
+    }
   },
   "polygon_ngon": {
     "meshes": 1,
     "vertices": 5,
-    "triangles": 3
+    "triangles": 3,
+    "bounds": {
+      "x": 1.6,
+      "y": 1.2,
+      "z": 0
+    }
+  },
+  "translated_quad": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    }
+  },
+  "nested_transform": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 2,
+      "y": 1,
+      "z": 0
+    }
+  },
+  "rotated_quad": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    }
+  },
+  "multi_clump": {
+    "meshes": 1,
+    "vertices": 8,
+    "triangles": 4,
+    "bounds": {
+      "x": 4,
+      "y": 1,
+      "z": 0
+    }
   }
 }

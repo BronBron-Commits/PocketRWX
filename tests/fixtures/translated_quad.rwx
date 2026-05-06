@@ -1,0 +1,13 @@
+ModelBegin
+ClumpBegin
+TransformBegin
+Translate 2 0 0
+Color 0.2 1.0 0.4
+Vertex -0.5 0 0
+Vertex -0.5 1 0
+Vertex 0.5 1 0
+Vertex 0.5 0 0
+Quad 1 2 3 4
+TransformEnd
+ClumpEnd
+ModelEnd

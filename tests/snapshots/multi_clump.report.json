@@ -1,11 +1,11 @@
 {
-  "input": "two_materials.rwx",
+  "input": "multi_clump.rwx",
   "expected": {
     "meshes": 1,
-    "vertices": 6,
-    "triangles": 2,
+    "vertices": 8,
+    "triangles": 4,
     "bounds": {
-      "x": 1,
+      "x": 4,
       "y": 1,
       "z": 0
     }
@@ -16,33 +16,33 @@
   },
   "rwx_original": {
     "meshes": 1,
-    "vertices": 6,
-    "triangles": 2,
+    "vertices": 8,
+    "triangles": 4,
     "materials": 1,
     "bounds": {
-      "x": 1,
+      "x": 4,
       "y": 1,
       "z": 0
     }
   },
   "after_glb": {
     "meshes": 1,
-    "vertices": 6,
-    "triangles": 2,
+    "vertices": 8,
+    "triangles": 4,
     "materials": 1,
     "bounds": {
-      "x": 1,
+      "x": 4,
       "y": 1,
       "z": 0
     }
   },
   "after_rwx_roundtrip": {
     "meshes": 1,
-    "vertices": 6,
-    "triangles": 2,
+    "vertices": 8,
+    "triangles": 4,
     "materials": 1,
     "bounds": {
-      "x": 1,
+      "x": 4,
       "y": 1,
       "z": 0
     }
@@ -53,12 +53,12 @@
       1
     ],
     "vertices": [
-      6,
-      6
+      8,
+      8
     ],
     "triangles": [
-      2,
-      2
+      4,
+      4
     ],
     "materials": [
       1,
@@ -66,12 +66,12 @@
     ],
     "bounds": [
       {
-        "x": 1,
+        "x": 4,
         "y": 1,
         "z": 0
       },
       {
-        "x": 1,
+        "x": 4,
         "y": 1,
         "z": 0
       }
@@ -84,12 +84,12 @@
       1
     ],
     "vertices": [
-      6,
-      6
+      8,
+      8
     ],
     "triangles": [
-      2,
-      2
+      4,
+      4
     ],
     "materials": [
       1,
@@ -97,12 +97,12 @@
     ],
     "bounds": [
       {
-        "x": 1,
+        "x": 4,
         "y": 1,
         "z": 0
       },
       {
-        "x": 1,
+        "x": 4,
         "y": 1,
         "z": 0
       }

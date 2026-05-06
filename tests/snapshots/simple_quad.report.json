@@ -1,5 +1,19 @@
 {
   "input": "simple_quad.rwx",
+  "expected": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 1,
+      "z": 0
+    }
+  },
+  "baselineCheck": {
+    "pass": true,
+    "problems": []
+  },
   "rwx_original": {
     "meshes": 1,
     "vertices": 4,

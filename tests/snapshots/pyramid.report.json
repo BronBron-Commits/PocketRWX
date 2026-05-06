@@ -1,5 +1,19 @@
 {
   "input": "pyramid.rwx",
+  "expected": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 6,
+    "bounds": {
+      "x": 2,
+      "y": 1.5,
+      "z": 2
+    }
+  },
+  "baselineCheck": {
+    "pass": true,
+    "problems": []
+  },
   "rwx_original": {
     "meshes": 1,
     "vertices": 5,

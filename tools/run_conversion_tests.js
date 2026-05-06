@@ -32,7 +32,18 @@ function checkExpected(base, stats) {
 
   for (const key of ["meshes", "vertices", "triangles"]) {
     if (stats[key] !== exp[key]) {
-      problems.push(`${key}: expected ${exp[key]}, got ${stats[key]}`);
+      problems.push(`: expected , got `);
+    }
+  }
+
+  if (exp.bounds) {
+    for (const axis of ["x", "y", "z"]) {
+      const expectedValue = Number(exp.bounds[axis].toFixed(3));
+      const actualValue = Number(stats.bounds[axis].toFixed(3));
+
+      if (expectedValue !== actualValue) {
+        problems.push(`bounds.: expected , got `);
+      }
     }
   }
 
