@@ -98,5 +98,15 @@
       "y": 1.526,
       "z": 0
     }
+  },
+  "deep_hierarchy": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 3.017,
+      "y": 1.0522,
+      "z": 0
+    }
   }
 }

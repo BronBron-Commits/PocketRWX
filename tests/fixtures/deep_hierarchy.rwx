@@ -1,0 +1,29 @@
+ModelBegin
+
+ClumpBegin
+
+TransformBegin
+Translate 2 0 0
+
+TransformBegin
+Rotate 0 0 1 30
+
+TransformBegin
+Scale 1.5 0.5 1
+
+Color 1 0.5 0
+
+Vertex -1 -1 0
+Vertex 1 -1 0
+Vertex 1 1 0
+Vertex -1 1 0
+
+Quad 1 2 3 4
+
+TransformEnd
+TransformEnd
+TransformEnd
+
+ClumpEnd
+
+ModelEnd
