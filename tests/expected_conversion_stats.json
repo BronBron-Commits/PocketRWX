@@ -108,5 +108,15 @@
       "y": 2.366,
       "z": 0
     }
+  },
+  "metadata_transform": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2,
+    "bounds": {
+      "x": 1,
+      "y": 2,
+      "z": 0
+    }
   }
 }

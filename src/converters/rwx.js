@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { parseTransformMetadata } from "../../tools/transform_metadata.js";
 
 export function parseRWX(text) {
   const vertices = [];
@@ -362,6 +363,11 @@ export function rwxToThree(text) {
 
   root.name = "RWX_Root";
 
+  root.userData.rwx = {
+    transforms:
+      parseTransformMetadata(text)
+  };
+
   root.add(mesh);
 
   return root;
@@ -372,6 +378,19 @@ export function threeToRWX(root) {
 
   lines.push("ModelBegin");
   lines.push("ClumpBegin");
+
+  const transformBlocks =
+    root.userData?.rwx?.transforms || [];
+
+  for (const block of transformBlocks) {
+    lines.push("TransformBegin");
+
+    for (const line of block) {
+      lines.push(line);
+    }
+
+    lines.push("TransformEnd");
+  }
 
   let vertexOffset = 1;
 

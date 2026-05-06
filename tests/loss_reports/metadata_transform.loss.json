@@ -1,0 +1,161 @@
+{
+  "input": "tests/fixtures/metadata_transform.rwx",
+  "outputs": {
+    "glb": "tests/loss_reports/metadata_transform.roundtrip.glb",
+    "rwx": "tests/loss_reports/metadata_transform.roundtrip.rwx"
+  },
+  "original_rwx_commands": {
+    "modelbegin": 1,
+    "clumpbegin": 1,
+    "transformbegin": 1,
+    "translate": 1,
+    "rotate": 1,
+    "scale": 1,
+    "color": 1,
+    "vertex": 4,
+    "quad": 1,
+    "transformend": 1,
+    "clumpend": 1,
+    "modelend": 1
+  },
+  "roundtrip_rwx_commands": {
+    "modelbegin": 1,
+    "clumpbegin": 1,
+    "color": 1,
+    "vertex": 4,
+    "triangle": 2,
+    "clumpend": 1,
+    "modelend": 1
+  },
+  "command_count_loss": {
+    "transformbegin": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "translate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "rotate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "scale": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "quad": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "transformend": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "triangle": {
+      "before": 0,
+      "after": 2,
+      "delta": 2
+    }
+  },
+  "acceptable_command_loss": {
+    "quad": {
+      "before": 1,
+      "after": 0,
+      "delta": -1,
+      "reason": "faces are triangulated for GLB compatibility"
+    },
+    "triangle": {
+      "before": 0,
+      "after": 2,
+      "delta": 2,
+      "reason": "faces are triangulated for GLB compatibility"
+    }
+  },
+  "real_command_loss": {
+    "transformbegin": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "translate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "rotate": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "scale": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    },
+    "transformend": {
+      "before": 1,
+      "after": 0,
+      "delta": -1
+    }
+  },
+  "unsupported_original_commands": [],
+  "parsed_rwx_summary": {
+    "vertices": 4,
+    "faces": 2,
+    "uvs": 4,
+    "color": [
+      0.8,
+      0.2,
+      1
+    ],
+    "texture": null,
+    "surface": null,
+    "opacity": 1
+  },
+  "stats": {
+    "original_rwx_scene": {
+      "meshes": 1,
+      "vertices": 4,
+      "triangles": 2,
+      "materials": 1,
+      "textures": [],
+      "bounds": {
+        "x": 1,
+        "y": 2,
+        "z": 0
+      }
+    },
+    "after_glb_scene": {
+      "meshes": 1,
+      "vertices": 4,
+      "triangles": 2,
+      "materials": 1,
+      "textures": [],
+      "bounds": {
+        "x": 1,
+        "y": 2,
+        "z": 0
+      }
+    },
+    "after_rwx_roundtrip_scene": {
+      "meshes": 1,
+      "vertices": 4,
+      "triangles": 2,
+      "materials": 1,
+      "textures": [],
+      "bounds": {
+        "x": 1,
+        "y": 2,
+        "z": 0
+      }
+    }
+  },
+  "scene_loss_full_roundtrip": {}
+}
