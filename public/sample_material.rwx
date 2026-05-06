@@ -1,0 +1,21 @@
+ModelBegin
+ClumpBegin
+
+MaterialBegin
+  Color 1 0 0
+  Opacity 1
+  Block 0.5 0.5 0.5
+MaterialEnd
+
+TransformBegin
+  Translate 1 0 0
+  MaterialBegin
+    Color 0 1 0
+    Texture checker
+    Opacity 0.8
+    Block 0.5 0.5 0.5
+  MaterialEnd
+TransformEnd
+
+ClumpEnd
+ModelEnd

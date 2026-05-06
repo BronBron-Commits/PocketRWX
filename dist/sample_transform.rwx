@@ -1,0 +1,25 @@
+ModelBegin
+ClumpBegin
+
+Color 1 0 0
+Block 0.4 0.4 0.4
+
+TransformBegin
+  Translate 1 0 0
+  Color 0 1 0
+  Block 0.4 0.4 0.4
+TransformEnd
+
+Color 0 0.4 1
+Block 0.4 0.4 0.4
+
+TransformBegin
+  Translate -1 0 0
+  Rotate 0 1 0 45
+  Scale 1 1.5 1
+  Color 1 0.6 0
+  Block 0.4 0.4 0.4
+TransformEnd
+
+ClumpEnd
+ModelEnd

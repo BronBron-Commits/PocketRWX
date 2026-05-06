@@ -1,0 +1,98 @@
+{
+  "input": "pyramid.rwx",
+  "rwx_original": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 6,
+    "materials": 1,
+    "bounds": {
+      "x": 2,
+      "y": 1.5,
+      "z": 2
+    }
+  },
+  "after_glb": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 6,
+    "materials": 1,
+    "bounds": {
+      "x": 2,
+      "y": 1.5,
+      "z": 2
+    }
+  },
+  "after_rwx_roundtrip": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 6,
+    "materials": 1,
+    "bounds": {
+      "x": 2,
+      "y": 1.5,
+      "z": 2
+    }
+  },
+  "glbCompare": {
+    "meshes": [
+      1,
+      1
+    ],
+    "vertices": [
+      5,
+      5
+    ],
+    "triangles": [
+      6,
+      6
+    ],
+    "materials": [
+      1,
+      1
+    ],
+    "bounds": [
+      {
+        "x": 2,
+        "y": 1.5,
+        "z": 2
+      },
+      {
+        "x": 2,
+        "y": 1.5,
+        "z": 2
+      }
+    ],
+    "pass": true
+  },
+  "rwxCompare": {
+    "meshes": [
+      1,
+      1
+    ],
+    "vertices": [
+      5,
+      5
+    ],
+    "triangles": [
+      6,
+      6
+    ],
+    "materials": [
+      1,
+      1
+    ],
+    "bounds": [
+      {
+        "x": 2,
+        "y": 1.5,
+        "z": 2
+      },
+      {
+        "x": 2,
+        "y": 1.5,
+        "z": 2
+      }
+    ],
+    "pass": true
+  }
+}

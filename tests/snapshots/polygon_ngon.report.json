@@ -1,0 +1,98 @@
+{
+  "input": "polygon_ngon.rwx",
+  "rwx_original": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 3,
+    "materials": 1,
+    "bounds": {
+      "x": 1.6,
+      "y": 1.2,
+      "z": 0
+    }
+  },
+  "after_glb": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 3,
+    "materials": 1,
+    "bounds": {
+      "x": 1.6,
+      "y": 1.2,
+      "z": 0
+    }
+  },
+  "after_rwx_roundtrip": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 3,
+    "materials": 1,
+    "bounds": {
+      "x": 1.6,
+      "y": 1.2,
+      "z": 0
+    }
+  },
+  "glbCompare": {
+    "meshes": [
+      1,
+      1
+    ],
+    "vertices": [
+      5,
+      5
+    ],
+    "triangles": [
+      3,
+      3
+    ],
+    "materials": [
+      1,
+      1
+    ],
+    "bounds": [
+      {
+        "x": 1.6,
+        "y": 1.2,
+        "z": 0
+      },
+      {
+        "x": 1.6,
+        "y": 1.2,
+        "z": 0
+      }
+    ],
+    "pass": true
+  },
+  "rwxCompare": {
+    "meshes": [
+      1,
+      1
+    ],
+    "vertices": [
+      5,
+      5
+    ],
+    "triangles": [
+      3,
+      3
+    ],
+    "materials": [
+      1,
+      1
+    ],
+    "bounds": [
+      {
+        "x": 1.6,
+        "y": 1.2,
+        "z": 0
+      },
+      {
+        "x": 1.6,
+        "y": 1.2,
+        "z": 0
+      }
+    ],
+    "pass": true
+  }
+}

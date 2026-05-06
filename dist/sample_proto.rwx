@@ -1,0 +1,17 @@
+ModelBegin
+
+ProtoBegin box
+  Vertex -0.2 0 0
+  Vertex 0.2 0 0
+  Vertex 0.2 0.4 0
+  Vertex -0.2 0.4 0
+  Quad 1 2 3 4
+ProtoEnd
+
+ClumpBegin
+  ProtoInstance box
+  Translate 1 0 0
+  ProtoInstance box
+ClumpEnd
+
+ModelEnd

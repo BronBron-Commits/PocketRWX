@@ -1,0 +1,32 @@
+ModelBegin
+ClumpBegin
+Color 0.4 0.8 0.6
+
+# Front
+Vertex -0.5 -0.5  0.5
+Vertex  0.5 -0.5  0.5
+Vertex  0.5  0.5  0.5
+Vertex -0.5  0.5  0.5
+Quad 1 2 3 4
+
+# Back
+Vertex -0.5 -0.5 -0.5
+Vertex  0.5 -0.5 -0.5
+Vertex  0.5  0.5 -0.5
+Vertex -0.5  0.5 -0.5
+Quad 8 7 6 5
+
+# Left
+Quad 5 1 4 8
+
+# Right
+Quad 2 6 7 3
+
+# Top
+Quad 4 3 7 8
+
+# Bottom
+Quad 5 6 2 1
+
+ClumpEnd
+ModelEnd

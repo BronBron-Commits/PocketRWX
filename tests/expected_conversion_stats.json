@@ -1,0 +1,22 @@
+{
+  "simple_quad": {
+    "meshes": 1,
+    "vertices": 4,
+    "triangles": 2
+  },
+  "two_materials": {
+    "meshes": 1,
+    "vertices": 6,
+    "triangles": 2
+  },
+  "pyramid": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 6
+  },
+  "polygon_ngon": {
+    "meshes": 1,
+    "vertices": 5,
+    "triangles": 3
+  }
+}
