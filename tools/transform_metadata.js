@@ -4,7 +4,6 @@ export function parseTransformMetadata(text) {
 
   for (const raw of text.split(/\r?\n/)) {
     const line = raw.trim();
-
     if (!line || line.startsWith("#")) continue;
 
     const cmd = line.split(/\s+/)[0].toLowerCase();
@@ -20,11 +19,15 @@ export function parseTransformMetadata(text) {
     }
 
     if (
-      depth > 0 &&
+      cmd === "texturemode" ||
+      cmd === "texturemodes" ||
       (
-        cmd === "translate" ||
-        cmd === "rotate" ||
-        cmd === "scale"
+        depth > 0 &&
+        (
+          cmd === "translate" ||
+          cmd === "rotate" ||
+          cmd === "scale"
+        )
       )
     ) {
       commands.push(line);

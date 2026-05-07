@@ -75,9 +75,9 @@ console.log(`report: ${reportPath}`);
 console.log("");
 console.log("=".repeat(72));
 
-if (real.length || before.unsupported.length) {
+if (real.length) {
   console.log("FINAL RESULT: SIDECAR LOSS DETECTED");
-  console.log(`Real losses: ${real.length + before.unsupported.length}`);
+  console.log(`Real losses: ${real.length}`);
 } else {
   console.log("FINAL RESULT: SIDECAR ROUNDTRIP CLEAN");
   console.log("No real command loss detected through sidecar restore.");

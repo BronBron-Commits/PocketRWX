@@ -15,6 +15,36 @@ export function parseRWX(text) {
     new THREE.Matrix4()
   ];
 
+
+    function addBlock(sx, sy, sz) {
+      const base = vertices.length;
+      const hx = sx / 2;
+      const hy = sy / 2;
+      const hz = sz / 2;
+
+      const corners = [
+        [-hx, -hy, -hz], [hx, -hy, -hz], [hx, hy, -hz], [-hx, hy, -hz],
+        [-hx, -hy, hz], [hx, -hy, hz], [hx, hy, hz], [-hx, hy, hz]
+      ];
+
+      for (const c of corners) {
+        const v = new THREE.Vector3(c[0], c[1], c[2]);
+        v.applyMatrix4(transformStack[transformStack.length - 1]);
+        vertices.push([v.x, v.y, v.z]);
+        uvs.push([0, 0]);
+      }
+
+      for (const t of [
+        [0,1,2],[0,2,3],
+        [4,6,5],[4,7,6],
+        [0,4,5],[0,5,1],
+        [1,5,6],[1,6,2],
+        [2,6,7],[2,7,3],
+        [3,7,4],[3,4,0]
+      ]) {
+        faces.push([base + t[0], base + t[1], base + t[2]]);
+      }
+    }
   for (const raw of text.split(/\r?\n/)) {
     const line = raw.trim();
 
@@ -164,6 +194,11 @@ export function parseRWX(text) {
       continue;
     }
 
+
+      if (cmd === "block") {
+        addBlock(Number(parts[1]), Number(parts[2]), Number(parts[3]));
+        continue;
+      }
     if (
       cmd === "vertex" ||
       cmd === "vertexext"
