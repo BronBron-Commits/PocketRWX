@@ -1,0 +1,68 @@
+ModelBegin
+ClumpBegin
+Color 0.08 0.08 0.08
+Texture generated/textures/metal.svg
+TextureAddressMode wrap
+Vertex -0.06 0 -0.06 UV 0 0
+Vertex 0.06 0 -0.06 UV 1 0
+Vertex 0.06 2 -0.06 UV 1 1
+Vertex -0.06 2 -0.06 UV 0 1
+Vertex -0.06 0 0.06 UV 0 0
+Vertex 0.06 0 0.06 UV 1 0
+Vertex 0.06 2 0.06 UV 1 1
+Vertex -0.06 2 0.06 UV 0 1
+Triangle 1 2 3
+Triangle 1 3 4
+Triangle 6 5 8
+Triangle 6 8 7
+Triangle 5 1 4
+Triangle 5 4 8
+Triangle 2 6 7
+Triangle 2 7 3
+Triangle 4 3 7
+Triangle 4 7 8
+Triangle 5 6 2
+Triangle 5 2 1
+Vertex -0.35 1.9899999999999998 -0.06 UV 0 0
+Vertex 0.35 1.9899999999999998 -0.06 UV 1 0
+Vertex 0.35 2.11 -0.06 UV 1 1
+Vertex -0.35 2.11 -0.06 UV 0 1
+Vertex -0.35 1.9899999999999998 0.06 UV 0 0
+Vertex 0.35 1.9899999999999998 0.06 UV 1 0
+Vertex 0.35 2.11 0.06 UV 1 1
+Vertex -0.35 2.11 0.06 UV 0 1
+Triangle 9 10 11
+Triangle 9 11 12
+Triangle 14 13 16
+Triangle 14 16 15
+Triangle 13 9 12
+Triangle 13 12 16
+Triangle 10 14 15
+Triangle 10 15 11
+Triangle 12 11 15
+Triangle 12 15 16
+Triangle 13 14 10
+Triangle 13 10 9
+Color 1 0.72 0.18
+Vertex 0.22500000000000003 1.5 -0.175 UV 0 0
+Vertex 0.575 1.5 -0.175 UV 1 0
+Vertex 0.575 2 -0.175 UV 1 1
+Vertex 0.22500000000000003 2 -0.175 UV 0 1
+Vertex 0.22500000000000003 1.5 0.175 UV 0 0
+Vertex 0.575 1.5 0.175 UV 1 0
+Vertex 0.575 2 0.175 UV 1 1
+Vertex 0.22500000000000003 2 0.175 UV 0 1
+Triangle 17 18 19
+Triangle 17 19 20
+Triangle 22 21 24
+Triangle 22 24 23
+Triangle 21 17 20
+Triangle 21 20 24
+Triangle 18 22 23
+Triangle 18 23 19
+Triangle 20 19 23
+Triangle 20 23 24
+Triangle 21 22 18
+Triangle 21 18 17
+ClumpEnd
+ModelEnd

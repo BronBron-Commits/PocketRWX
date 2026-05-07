@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RWX Object Test</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#87ceeb;font-family:sans-serif}
+#hud{position:fixed;top:10px;left:10px;background:rgba(0,0,0,.65);color:white;padding:10px;border-radius:8px;z-index:10}
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+<div id="hud">Loading generated/bookshelf.rwx...</div>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+
+const hud = document.getElementById("hud");
+
+const scene = new THREE.Scene();
+const walkers = [];
+scene.background = new THREE.Color(0x87ceeb);
+
+const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.01, 1000);
+camera.position.set(0, 7, 13);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0.8, 3);
+controls.enableDamping = true;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x445566, 2.0));
+
+const sun = new THREE.DirectionalLight(0xffffff, 2.0);
+sun.position.set(5, 8, 4);
+scene.add(sun);
+
+const grid = new THREE.GridHelper(10, 10);
+scene.add(grid);
+
+function parseRWX(text) {
+  const root = new THREE.Group();
+
+  const protos = new Map();
+  const lines = text.split(/\r?\n/).map(x => x.trim()).filter(x => x && !x.startsWith("# "));
+
+  function makeState() {
+    return {
+      verts: [],
+      uvs: [],
+      positions: [],
+      uvOut: [],
+      color: [0.8, 0.8, 0.8],
+      texture: null,
+      matrix: new THREE.Matrix4(),
+      stack: [],
+      meshes: []
+    };
+  }
+
+  function emitMesh(state) {
+    if (!state.positions.length) return;
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute("position", new THREE.Float32BufferAttribute(state.positions, 3));
+    geo.setAttribute("uv", new THREE.Float32BufferAttribute(state.uvOut, 2));
+    geo.applyMatrix4(state.matrix);
+    geo.computeVertexNormals();
+
+    const mat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(state.color[0], state.color[1], state.color[2]),
+      side: THREE.DoubleSide
+    });
+
+    if (state.texture) {
+      const tex = new THREE.TextureLoader().load(state.texture);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      mat.map = tex;
+    }
+
+    state.meshes.push(new THREE.Mesh(geo, mat));
+    state.positions = [];
+    state.uvOut = [];
+  }
+
+  function addTri(state, a, b, c) {
+    for (const n of [a, b, c]) {
+      const idx = Number(n) - 1;
+      const v = state.verts[idx];
+      const uv = state.uvs[idx] || [0, 0];
+      if (!v) continue;
+      state.positions.push(v[0], v[1], v[2]);
+      state.uvOut.push(uv[0], uv[1]);
+    }
+  }
+
+  function addBox(state, sx, sy, sz) {
+    const x = sx / 2, y = sy / 2, z = sz / 2;
+    const base = state.verts.length + 1;
+
+    const verts = [
+      [-x,-y,-z,0,0], [x,-y,-z,1,0], [x,y,-z,1,1], [-x,y,-z,0,1],
+      [-x,-y,z,0,0], [x,-y,z,1,0], [x,y,z,1,1], [-x,y,z,0,1]
+    ];
+
+    for (const v of verts) {
+      state.verts.push([v[0], v[1], v[2]]);
+      state.uvs.push([v[3], v[4]]);
+    }
+
+    const faces = [
+      [1,2,3],[1,3,4],
+      [6,5,8],[6,8,7],
+      [5,1,4],[5,4,8],
+      [2,6,7],[2,7,3],
+      [4,3,7],[4,7,8],
+      [5,6,2],[5,2,1]
+    ];
+
+    for (const f of faces) addTri(state, base + f[0] - 1, base + f[1] - 1, base + f[2] - 1);
+  }
+
+  function addCylinder(state, h, r1, r2, sides) {
+    const base = state.verts.length + 1;
+    const bottom = [];
+    const top = [];
+
+    for (let i = 0; i < sides; i++) {
+      const a = (i / sides) * Math.PI * 2;
+      const cb = Math.cos(a), sb = Math.sin(a);
+
+      bottom.push(state.verts.length + 1);
+      state.verts.push([cb * r1, -h / 2, sb * r1]);
+      state.uvs.push([i / sides, 0]);
+
+      top.push(state.verts.length + 1);
+      state.verts.push([cb * r2, h / 2, sb * r2]);
+      state.uvs.push([i / sides, 1]);
+    }
+
+    const centerBottom = state.verts.length + 1;
+    state.verts.push([0, -h / 2, 0]);
+    state.uvs.push([0.5, 0.5]);
+
+    const centerTop = state.verts.length + 1;
+    state.verts.push([0, h / 2, 0]);
+    state.uvs.push([0.5, 0.5]);
+
+    for (let i = 0; i < sides; i++) {
+      const n = (i + 1) % sides;
+
+      addTri(state, bottom[i], bottom[n], top[n]);
+      addTri(state, bottom[i], top[n], top[i]);
+
+      addTri(state, centerBottom, bottom[i], bottom[n]);
+      addTri(state, centerTop, top[n], top[i]);
+    }
+  }
+
+  function addCone(state, h, r, sides) {
+    const base = [];
+    const y0 = -h / 2;
+    const y1 = h / 2;
+
+    for (let i = 0; i < sides; i++) {
+      const a = (i / sides) * Math.PI * 2;
+      base.push(state.verts.length + 1);
+      state.verts.push([Math.cos(a) * r, y0, Math.sin(a) * r]);
+      state.uvs.push([i / sides, 0]);
+    }
+
+    const tip = state.verts.length + 1;
+    state.verts.push([0, y1, 0]);
+    state.uvs.push([0.5, 1]);
+
+    const center = state.verts.length + 1;
+    state.verts.push([0, y0, 0]);
+    state.uvs.push([0.5, 0.5]);
+
+    for (let i = 0; i < sides; i++) {
+      const n = (i + 1) % sides;
+      addTri(state, base[i], base[n], tip);
+      addTri(state, center, base[n], base[i]);
+    }
+  }
+
+  function addSphere(state, r, density) {
+    const width = Math.max(12, density * 12);
+    const height = Math.max(8, density * 8);
+    const geo = new THREE.SphereGeometry(r, width, height);
+    geo.applyMatrix4(state.matrix);
+
+    const mat = new THREE.MeshStandardMaterial({
+      color: new THREE.Color(state.color[0], state.color[1], state.color[2]),
+      side: THREE.DoubleSide
+    });
+
+    if (state.texture) {
+      const tex = new THREE.TextureLoader().load(state.texture);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      mat.map = tex;
+    }
+
+    state.meshes.push(new THREE.Mesh(geo, mat));
+  }
+
+  function run(chunkLines, inherited = null) {
+    const state = inherited || makeState();
+
+    for (let i = 0; i < chunkLines.length; i++) {
+      const line = chunkLines[i];
+      const parts = line.split(/\s+/);
+      const cmd = parts[0]?.toLowerCase();
+
+      if (cmd === "color") {
+        emitMesh(state);
+        state.color = [Number(parts[1]), Number(parts[2]), Number(parts[3])];
+      }
+
+      else if (cmd === "texture") {
+        emitMesh(state);
+        state.texture = parts.slice(1).join(" ");
+      }
+
+      else if (cmd === "vertex") {
+        state.verts.push([Number(parts[1]), Number(parts[2]), Number(parts[3])]);
+        const uvIndex = parts.findIndex(x => x.toLowerCase() === "uv");
+        state.uvs.push(uvIndex >= 0 ? [Number(parts[uvIndex + 1]), Number(parts[uvIndex + 2])] : [0, 0]);
+      }
+
+      else if (cmd === "triangle") {
+        addTri(state, parts[1], parts[2], parts[3]);
+      }
+
+      else if (cmd === "quad") {
+        addTri(state, parts[1], parts[2], parts[3]);
+        addTri(state, parts[1], parts[3], parts[4]);
+      }
+
+      else if (cmd === "block") {
+        addBox(state, Number(parts[1]), Number(parts[2]), Number(parts[3]));
+        emitMesh(state);
+      }
+
+      else if (cmd === "cylinder") {
+        addCylinder(state, Number(parts[1]), Number(parts[2]), Number(parts[3]), Number(parts[4]));
+        emitMesh(state);
+      }
+
+      else if (cmd === "cone") {
+        addCone(state, Number(parts[1]), Number(parts[2]), Number(parts[3]));
+        emitMesh(state);
+      }
+
+      else if (cmd === "sphere") {
+        emitMesh(state);
+        addSphere(state, Number(parts[1]), Number(parts[2] || 2));
+      }
+
+      else if (cmd === "transformbegin") {
+        state.stack.push(state.matrix.clone());
+      }
+
+      else if (cmd === "transformend") {
+        emitMesh(state);
+        state.matrix = state.stack.pop() || new THREE.Matrix4();
+      }
+
+      else if (cmd === "identity") {
+        emitMesh(state);
+        state.matrix.identity();
+      }
+
+      else if (cmd === "translate") {
+        emitMesh(state);
+        state.matrix.multiply(new THREE.Matrix4().makeTranslation(Number(parts[1]), Number(parts[2]), Number(parts[3])));
+      }
+
+      else if (cmd === "scale") {
+        emitMesh(state);
+        state.matrix.multiply(new THREE.Matrix4().makeScale(Number(parts[1]), Number(parts[2]), Number(parts[3])));
+      }
+
+      else if (cmd === "rotate") {
+        emitMesh(state);
+        const axis = new THREE.Vector3(Number(parts[1]), Number(parts[2]), Number(parts[3])).normalize();
+        state.matrix.multiply(new THREE.Matrix4().makeRotationAxis(axis, THREE.MathUtils.degToRad(Number(parts[4]))));
+      }
+
+      else if (cmd === "protoinstance") {
+        const proto = protos.get(parts[1]);
+        if (proto) {
+          const child = makeState();
+          child.color = [...state.color];
+          child.texture = state.texture;
+          child.matrix = state.matrix.clone();
+          run(proto, child);
+          state.meshes.push(...child.meshes);
+        }
+      }
+    }
+
+    emitMesh(state);
+    return state;
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const parts = lines[i].split(/\s+/);
+    if (parts[0]?.toLowerCase() === "protobegin") {
+      const name = parts[1];
+      const body = [];
+      i++;
+      while (i < lines.length && lines[i].split(/\s+/)[0]?.toLowerCase() !== "protoend") {
+        body.push(lines[i]);
+        i++;
+      }
+      protos.set(name, body);
+    }
+  }
+
+  const mainLines = [];
+  let skippingProto = false;
+
+  for (const line of lines) {
+    const cmd = line.split(/\s+/)[0]?.toLowerCase();
+    if (cmd === "protobegin") {
+      skippingProto = true;
+      continue;
+    }
+    if (cmd === "protoend") {
+      skippingProto = false;
+      continue;
+    }
+    if (!skippingProto) mainLines.push(line);
+  }
+
+  const result = run(mainLines);
+
+  for (const mesh of result.meshes) root.add(mesh);
+
+  return root;
+}
+
+async function loadRWXMesh(file) {
+  const text = await fetch(file).then(r => r.text());
+  return parseRWX(text);
+}
+
+async function makePerson(obj) {
+  const root = new THREE.Group();
+
+  async function addPart(file, name, x, y, z) {
+    const part = await loadRWXMesh(file);
+    part.name = name;
+    part.position.set(x, y, z);
+    root.add(part);
+    return part;
+  }
+
+  await addPart("generated/person_body.rwx", "body", 0, 0.95, 0);
+  await addPart("generated/person_head.rwx", "head", 0, 1.55, 0);
+
+  await addPart("generated/person_left_leg.rwx", "leftLeg", -0.13, 0.25, 0);
+  await addPart("generated/person_right_leg.rwx", "rightLeg", 0.13, 0.25, 0);
+
+  await addPart("generated/person_left_arm.rwx", "leftArm", -0.35, 0.9, 0);
+  await addPart("generated/person_right_arm.rwx", "rightArm", 0.35, 0.9, 0);
+
+  root.position.set(obj.x || 0, obj.y || 0, obj.z || 0);
+  root.scale.setScalar(obj.scale || 1);
+  root.rotation.y = obj.yaw || 0;
+
+  root.userData.walkBaseX = root.position.x;
+  root.userData.walkBaseZ = root.position.z;
+  root.userData.walkAngle = Math.random() * Math.PI * 2;
+  root.userData.walkRadius = 1.5 + Math.random() * 2.5;
+  root.userData.walkSpeed = 0.25 + Math.random() * 0.35;
+
+  walkers.push(root);
+
+  return root;
+}
+
+async function main() {
+  const sceneData = await fetch("generated/proc_harbor_town.json").then(r => r.json());
+
+  for (const obj of sceneData.objects) {
+    let mesh;
+
+    if ((obj.file || "").includes("person.rwx")) {
+      mesh = await makePerson(obj);
+    } else {
+      const text = await fetch(obj.file).then(r => r.text());
+      mesh = parseRWX(text);
+
+      mesh.position.set(obj.x || 0, obj.y || 0, obj.z || 0);
+      mesh.scale.setScalar(obj.scale || 1);
+      mesh.rotation.y = obj.yaw || 0;
+    }
+
+    scene.add(mesh);
+  }
+
+  hud.textContent = "Loaded generated/proc_harbor_town.json";
+}
+
+main().catch(err => {
+  console.error(err);
+  hud.textContent = "ERROR: " + err.message;
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  // WALKER_ANIM_UPDATE
+  const t = performance.now() * 0.001;
+
+  for (const w of walkers) {
+    const a = w.userData.walkAngle + t * w.userData.walkSpeed;
+
+    w.position.x = w.userData.walkBaseX + Math.cos(a) * w.userData.walkRadius;
+    w.position.z = w.userData.walkBaseZ + Math.sin(a) * w.userData.walkRadius;
+    w.rotation.y = -a + Math.PI / 2;
+
+    const step = t * w.userData.walkSpeed * 10;
+    const bob = Math.abs(Math.sin(step)) * 0.08;
+    w.position.y = bob;
+
+    const swing = Math.sin(step) * 0.95;
+
+    const leftLeg = w.getObjectByName("leftLeg");
+    const rightLeg = w.getObjectByName("rightLeg");
+    const leftArm = w.getObjectByName("leftArm");
+    const rightArm = w.getObjectByName("rightArm");
+
+    if (leftLeg) leftLeg.rotation.x = swing;
+    if (rightLeg) rightLeg.rotation.x = -swing;
+
+    if (leftArm) {
+      leftArm.rotation.x = -swing * 1.8;
+      leftArm.rotation.z = 0.25;
+    }
+
+    if (rightArm) {
+      rightArm.rotation.x = swing * 1.8;
+      rightArm.rotation.z = -0.25;
+    }
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+animate();
+
+addEventListener("resize", () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>

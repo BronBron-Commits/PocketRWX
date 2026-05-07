@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Everything Mobile Parts Viewer</title>
+
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05070a;color:white;font-family:sans-serif}
+#hud{position:fixed;top:10px;left:10px;z-index:10;background:rgba(0,0,0,.75);padding:10px 12px;border-radius:10px;font-size:13px;max-width:92vw}
+button{margin-top:6px}
+</style>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+<div id="hud">Loading manifest...</div>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+
+const hud = document.getElementById("hud");
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x87ceeb);
+
+const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.01, 100000);
+camera.position.set(30, 30, 30);
+
+const renderer = new THREE.WebGLRenderer({ antialias:false });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+
+// DAYTIME_SKY_LIGHTS
+scene.add(new THREE.HemisphereLight(0xdff4ff, 0x8a7a5a, 2.6));
+scene.add(new THREE.AmbientLight(0xffffff, 1.2));
+
+const sun = new THREE.DirectionalLight(0xffffff, 2.3);
+sun.position.set(300, 600, 250);
+sun.castShadow = false;
+scene.add(sun);
+
+const grid = new THREE.GridHelper(200, 40);
+grid.material.transparent = true;
+grid.material.opacity = 0.18;
+scene.add(grid);
+
+// PROCEDURAL_OCEAN
+const oceanGeo = new THREE.PlaneGeometry(8000, 8000, 128, 128);
+const oceanMat = new THREE.MeshStandardMaterial({
+  color: 0x0b5fa5,
+  roughness: 0.45,
+  metalness: 0.05,
+  transparent: true,
+  opacity: 0.88,
+  side: THREE.DoubleSide
+});
+const ocean = new THREE.Mesh(oceanGeo, oceanMat);
+ocean.rotation.x = -Math.PI / 2;
+ocean.position.y = 14.9;
+scene.add(ocean);
+
+// OCEAN_WAVE_ANIM
+const oceanPos = ocean.geometry.attributes.position;
+const oceanBase = oceanPos.array.slice();
+
+const root = new THREE.Group();
+scene.add(root);
+
+const textureCache = new Map();
+
+function resolveTexture(path) {
+  if (!path) return null;
+
+  path = String(path).trim();
+
+  if (path.startsWith("samples/")) {
+    return new URL("/" + path, location.origin).href;
+  }
+
+  if (path.startsWith("./samples/")) {
+    return new URL("/" + path.slice(2), location.origin).href;
+  }
+
+  return new URL(path, location.href).href;
+}
+
+function loadTexture(path) {
+  const url = resolveTexture(path);
+
+  if (!url) return null;
+
+  if (textureCache.has(url)) {
+    return textureCache.get(url);
+  }
+
+  const tex = new THREE.TextureLoader().load(url);
+  tex.flipY = false;
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  tex.needsUpdate = true;
+  textureCache.set(url, tex);
+  return tex;
+}
+
+function parseRWX(text, textureFromManifest) {
+  const lines = text.split(/\r?\n/);
+  const verts = [];
+  const uvs = [];
+  const positions = [];
+  const uvOut = [];
+
+  let texture = textureFromManifest || null;
+  let color = [0.75, 0.75, 0.75];
+  let triCount = 0;
+
+  for (const line of lines) {
+    const parts = line.trim().split(/\s+/);
+
+    if (parts[0] === "Texture") {
+      texture = parts.slice(1).join(" ");
+    }
+
+    if (parts[0] === "Color") {
+      color = [
+        Number(parts[1]),
+        Number(parts[2]),
+        Number(parts[3])
+      ];
+    }
+
+    if (parts[0] === "Vertex") {
+      verts.push([Number(parts[1]), Number(parts[2]), Number(parts[3])]);
+
+      const uvIndex = parts.indexOf("UV");
+      if (uvIndex >= 0) {
+        uvs.push([Number(parts[uvIndex + 1]), Number(parts[uvIndex + 2])]);
+      } else {
+        uvs.push([0,0]);
+      }
+    }
+
+    if (parts[0] === "Triangle") {
+      triCount++;
+
+      for (const idxText of [parts[1], parts[2], parts[3]]) {
+        const idx = Number(idxText) - 1;
+        const v = verts[idx];
+        const uv = uvs[idx] || [0,0];
+
+        if (!v) continue;
+
+        positions.push(v[0], v[1], v[2]);
+        uvOut.push(uv[0], uv[1]);
+      }
+    }
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+
+  if (uvOut.length) {
+    geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvOut, 2));
+  }
+
+  geo.computeVertexNormals();
+
+  const tex = loadTexture(texture);
+
+  const mat = tex
+    ? new THREE.MeshStandardMaterial({
+        map: tex,
+        color: 0xffffff,
+        side: THREE.DoubleSide
+      })
+    : new THREE.MeshBasicMaterial({
+        color: new THREE.Color(color[0], color[1], color[2]),
+        side: THREE.DoubleSide
+      });
+
+  return {
+    mesh: new THREE.Mesh(geo, mat),
+    vertices: verts.length,
+    triangles: triCount
+  };
+}
+
+async function loadParts() {
+  const manifestURL = "samples/real_glb/everything_chunks/manifest.json";
+  const manifest = await fetch(manifestURL).then(r => r.json());
+  const base = new URL("samples/real_glb/everything_chunks/", location.href);
+
+  let loaded = 0;
+  let verts = 0;
+  let tris = 0;
+
+  hud.innerHTML =
+    "Mobile manifest loaded<br>" +
+    "Parts: " + manifest.parts.length + "<br>" +
+    "Skipped huge parts: " + 0;
+
+  for (const part of manifest.parts) {
+    const url = new URL(part.file, base).href;
+    const text = await fetch(url).then(r => r.text());
+
+    const parsed = parseRWX(text, part.texture);
+    root.add(parsed.mesh);
+
+    loaded++;
+    verts += parsed.vertices;
+    tris += parsed.triangles;
+
+    hud.innerHTML =
+      "Loading mobile parts...<br>" +
+      loaded + " / " + manifest.parts.length + "<br>" +
+      "Vertices: " + verts.toLocaleString() + "<br>" +
+      "Triangles: " + tris.toLocaleString() + "<br>" +
+      "Skipped huge parts: " + 0;
+
+    await new Promise(r => setTimeout(r, 0));
+  }
+
+  const box = new THREE.Box3().setFromObject(root);
+  const center = box.getCenter(new THREE.Vector3());
+  root.position.sub(center);
+
+  const size = box.getSize(new THREE.Vector3());
+  const maxDim = Math.max(size.x, size.y, size.z) || 1;
+
+  camera.position.set(maxDim * 0.8, maxDim * 0.55, maxDim * 0.9);
+  controls.target.set(0, 0, 0);
+  controls.update();
+
+  hud.innerHTML += "<br>Done.";
+}
+
+loadParts().catch(err => {
+  console.error(err);
+  hud.innerHTML = "ERROR: " + err.message;
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  // OCEAN_WAVE_ANIM
+{
+  const t = performance.now() * 0.0015;
+
+  for(let i = 0; i < oceanPos.count; i++) {
+    const ix = i * 3;
+
+    const x = oceanBase[ix + 0];
+    const y = oceanBase[ix + 1];
+    const z = oceanBase[ix + 2];
+
+    oceanPos.array[ix + 2] =
+      z +
+      Math.sin((x * 0.01) + t) * 1.2 +
+      Math.cos((y * 0.02) + (t * 1.4)) * 0.7;
+  }
+
+  oceanPos.needsUpdate = true;
+  ocean.geometry.computeVertexNormals();
+}
+
+renderer.render(scene, camera);
+}
+animate();
+
+addEventListener("resize", () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>
+</body>
+</html>

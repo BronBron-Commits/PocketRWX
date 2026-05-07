@@ -1,0 +1,300 @@
+{
+  "objects": [
+    {
+      "file": "generated/lighthouse.rwx",
+      "x": -11,
+      "y": 0,
+      "z": 6,
+      "scale": 1.4,
+      "yaw": 0
+    },
+    {
+      "file": "generated/house.rwx",
+      "x": -6,
+      "y": 0,
+      "z": -2,
+      "scale": 1,
+      "yaw": 0.2
+    },
+    {
+      "file": "generated/house.rwx",
+      "x": 0,
+      "y": 0,
+      "z": -3,
+      "scale": 1.1,
+      "yaw": -0.15
+    },
+    {
+      "file": "generated/house.rwx",
+      "x": 6,
+      "y": 0,
+      "z": -2,
+      "scale": 1,
+      "yaw": 0.1
+    },
+    {
+      "file": "generated/dock.rwx",
+      "x": 0,
+      "y": 0,
+      "z": 4,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/boat.rwx",
+      "x": -6.5,
+      "y": 0,
+      "z": 11.5,
+      "scale": 1,
+      "yaw": 0.35
+    },
+    {
+      "file": "generated/boat.rwx",
+      "x": 7.5,
+      "y": 0,
+      "z": 13.5,
+      "scale": 0.8,
+      "yaw": -0.45
+    },
+    {
+      "file": "generated/bridge.rwx",
+      "x": 0,
+      "y": 0,
+      "z": 0.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": -12,
+      "y": 0,
+      "z": -7.5,
+      "scale": 0.9,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": -9.4,
+      "y": 0,
+      "z": -7.5,
+      "scale": 1,
+      "yaw": 0.2
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": -6.8,
+      "y": 0,
+      "z": -7.5,
+      "scale": 1.1,
+      "yaw": 0.4
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": -4.199999999999999,
+      "y": 0,
+      "z": -7.5,
+      "scale": 0.9,
+      "yaw": 0.6000000000000001
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": -1.5999999999999996,
+      "y": 0,
+      "z": -7.5,
+      "scale": 1,
+      "yaw": 0.8
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": 1,
+      "y": 0,
+      "z": -7.5,
+      "scale": 1.1,
+      "yaw": 1
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": 3.6000000000000014,
+      "y": 0,
+      "z": -7.5,
+      "scale": 0.9,
+      "yaw": 1.2000000000000002
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": 6.199999999999999,
+      "y": 0,
+      "z": -7.5,
+      "scale": 1,
+      "yaw": 1.4000000000000001
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": 8.8,
+      "y": 0,
+      "z": -7.5,
+      "scale": 1.1,
+      "yaw": 1.6
+    },
+    {
+      "file": "generated/pine.rwx",
+      "x": 11.400000000000002,
+      "y": 0,
+      "z": -7.5,
+      "scale": 0.9,
+      "yaw": 1.8
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": -6,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": -4,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": -2,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": 0,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": 2,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": 4,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/lantern.rwx",
+      "x": 6,
+      "y": 0,
+      "z": 2.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": -1.6,
+      "y": -0.4,
+      "z": 4,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": 1.6,
+      "y": -0.4,
+      "z": 4,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": -1.6,
+      "y": -0.4,
+      "z": 5.1,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": 1.6,
+      "y": -0.4,
+      "z": 5.1,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": -1.6,
+      "y": -0.4,
+      "z": 6.2,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": 1.6,
+      "y": -0.4,
+      "z": 6.2,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": -1.6,
+      "y": -0.4,
+      "z": 7.300000000000001,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": 1.6,
+      "y": -0.4,
+      "z": 7.300000000000001,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": -1.6,
+      "y": -0.4,
+      "z": 8.4,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": 1.6,
+      "y": -0.4,
+      "z": 8.4,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": -1.6,
+      "y": -0.4,
+      "z": 9.5,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/pierpost.rwx",
+      "x": 1.6,
+      "y": -0.4,
+      "z": 9.5,
+      "scale": 1,
+      "yaw": 0
+    }
+  ]
+}

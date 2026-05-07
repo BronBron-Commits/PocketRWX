@@ -1,0 +1,366 @@
+ModelBegin
+ClumpBegin
+Color 0.42 0.25 0.12
+Vertex -1.75 -0.09 -0.25 UV 0 0
+Vertex 1.75 -0.09 -0.25 UV 1 0
+Vertex 1.75 0.09 -0.25 UV 1 1
+Vertex -1.75 0.09 -0.25 UV 0 1
+Vertex -1.75 -0.09 0.25 UV 0 0
+Vertex 1.75 -0.09 0.25 UV 1 0
+Vertex 1.75 0.09 0.25 UV 1 1
+Vertex -1.75 0.09 0.25 UV 0 1
+Triangle 1 2 3
+Triangle 1 3 4
+Triangle 6 5 8
+Triangle 6 8 7
+Triangle 5 1 4
+Triangle 5 4 8
+Triangle 2 6 7
+Triangle 2 7 3
+Triangle 4 3 7
+Triangle 4 7 8
+Triangle 5 6 2
+Triangle 5 2 1
+Vertex -1.75 -0.09 0.5 UV 0 0
+Vertex 1.75 -0.09 0.5 UV 1 0
+Vertex 1.75 0.09 0.5 UV 1 1
+Vertex -1.75 0.09 0.5 UV 0 1
+Vertex -1.75 -0.09 1 UV 0 0
+Vertex 1.75 -0.09 1 UV 1 0
+Vertex 1.75 0.09 1 UV 1 1
+Vertex -1.75 0.09 1 UV 0 1
+Triangle 9 10 11
+Triangle 9 11 12
+Triangle 14 13 16
+Triangle 14 16 15
+Triangle 13 9 12
+Triangle 13 12 16
+Triangle 10 14 15
+Triangle 10 15 11
+Triangle 12 11 15
+Triangle 12 15 16
+Triangle 13 14 10
+Triangle 13 10 9
+Vertex -1.75 -0.09 1.25 UV 0 0
+Vertex 1.75 -0.09 1.25 UV 1 0
+Vertex 1.75 0.09 1.25 UV 1 1
+Vertex -1.75 0.09 1.25 UV 0 1
+Vertex -1.75 -0.09 1.75 UV 0 0
+Vertex 1.75 -0.09 1.75 UV 1 0
+Vertex 1.75 0.09 1.75 UV 1 1
+Vertex -1.75 0.09 1.75 UV 0 1
+Triangle 17 18 19
+Triangle 17 19 20
+Triangle 22 21 24
+Triangle 22 24 23
+Triangle 21 17 20
+Triangle 21 20 24
+Triangle 18 22 23
+Triangle 18 23 19
+Triangle 20 19 23
+Triangle 20 23 24
+Triangle 21 22 18
+Triangle 21 18 17
+Vertex -1.75 -0.09 2 UV 0 0
+Vertex 1.75 -0.09 2 UV 1 0
+Vertex 1.75 0.09 2 UV 1 1
+Vertex -1.75 0.09 2 UV 0 1
+Vertex -1.75 -0.09 2.5 UV 0 0
+Vertex 1.75 -0.09 2.5 UV 1 0
+Vertex 1.75 0.09 2.5 UV 1 1
+Vertex -1.75 0.09 2.5 UV 0 1
+Triangle 25 26 27
+Triangle 25 27 28
+Triangle 30 29 32
+Triangle 30 32 31
+Triangle 29 25 28
+Triangle 29 28 32
+Triangle 26 30 31
+Triangle 26 31 27
+Triangle 28 27 31
+Triangle 28 31 32
+Triangle 29 30 26
+Triangle 29 26 25
+Vertex -1.75 -0.09 2.75 UV 0 0
+Vertex 1.75 -0.09 2.75 UV 1 0
+Vertex 1.75 0.09 2.75 UV 1 1
+Vertex -1.75 0.09 2.75 UV 0 1
+Vertex -1.75 -0.09 3.25 UV 0 0
+Vertex 1.75 -0.09 3.25 UV 1 0
+Vertex 1.75 0.09 3.25 UV 1 1
+Vertex -1.75 0.09 3.25 UV 0 1
+Triangle 33 34 35
+Triangle 33 35 36
+Triangle 38 37 40
+Triangle 38 40 39
+Triangle 37 33 36
+Triangle 37 36 40
+Triangle 34 38 39
+Triangle 34 39 35
+Triangle 36 35 39
+Triangle 36 39 40
+Triangle 37 38 34
+Triangle 37 34 33
+Vertex -1.75 -0.09 3.5 UV 0 0
+Vertex 1.75 -0.09 3.5 UV 1 0
+Vertex 1.75 0.09 3.5 UV 1 1
+Vertex -1.75 0.09 3.5 UV 0 1
+Vertex -1.75 -0.09 4 UV 0 0
+Vertex 1.75 -0.09 4 UV 1 0
+Vertex 1.75 0.09 4 UV 1 1
+Vertex -1.75 0.09 4 UV 0 1
+Triangle 41 42 43
+Triangle 41 43 44
+Triangle 46 45 48
+Triangle 46 48 47
+Triangle 45 41 44
+Triangle 45 44 48
+Triangle 42 46 47
+Triangle 42 47 43
+Triangle 44 43 47
+Triangle 44 47 48
+Triangle 45 46 42
+Triangle 45 42 41
+Vertex -1.75 -0.09 4.25 UV 0 0
+Vertex 1.75 -0.09 4.25 UV 1 0
+Vertex 1.75 0.09 4.25 UV 1 1
+Vertex -1.75 0.09 4.25 UV 0 1
+Vertex -1.75 -0.09 4.75 UV 0 0
+Vertex 1.75 -0.09 4.75 UV 1 0
+Vertex 1.75 0.09 4.75 UV 1 1
+Vertex -1.75 0.09 4.75 UV 0 1
+Triangle 49 50 51
+Triangle 49 51 52
+Triangle 54 53 56
+Triangle 54 56 55
+Triangle 53 49 52
+Triangle 53 52 56
+Triangle 50 54 55
+Triangle 50 55 51
+Triangle 52 51 55
+Triangle 52 55 56
+Triangle 53 54 50
+Triangle 53 50 49
+Vertex -1.75 -0.09 5 UV 0 0
+Vertex 1.75 -0.09 5 UV 1 0
+Vertex 1.75 0.09 5 UV 1 1
+Vertex -1.75 0.09 5 UV 0 1
+Vertex -1.75 -0.09 5.5 UV 0 0
+Vertex 1.75 -0.09 5.5 UV 1 0
+Vertex 1.75 0.09 5.5 UV 1 1
+Vertex -1.75 0.09 5.5 UV 0 1
+Triangle 57 58 59
+Triangle 57 59 60
+Triangle 62 61 64
+Triangle 62 64 63
+Triangle 61 57 60
+Triangle 61 60 64
+Triangle 58 62 63
+Triangle 58 63 59
+Triangle 60 59 63
+Triangle 60 63 64
+Triangle 61 62 58
+Triangle 61 58 57
+Color 0.25 0.14 0.07
+Vertex -1.51 -1.4 -0.11 UV 0 0
+Vertex -1.2899999999999998 -1.4 -0.11 UV 1 0
+Vertex -1.2899999999999998 0 -0.11 UV 1 1
+Vertex -1.51 0 -0.11 UV 0 1
+Vertex -1.51 -1.4 0.11 UV 0 0
+Vertex -1.2899999999999998 -1.4 0.11 UV 1 0
+Vertex -1.2899999999999998 0 0.11 UV 1 1
+Vertex -1.51 0 0.11 UV 0 1
+Triangle 65 66 67
+Triangle 65 67 68
+Triangle 70 69 72
+Triangle 70 72 71
+Triangle 69 65 68
+Triangle 69 68 72
+Triangle 66 70 71
+Triangle 66 71 67
+Triangle 68 67 71
+Triangle 68 71 72
+Triangle 69 70 66
+Triangle 69 66 65
+Vertex -1.51 -1.4 1.0899999999999999 UV 0 0
+Vertex -1.2899999999999998 -1.4 1.0899999999999999 UV 1 0
+Vertex -1.2899999999999998 0 1.0899999999999999 UV 1 1
+Vertex -1.51 0 1.0899999999999999 UV 0 1
+Vertex -1.51 -1.4 1.31 UV 0 0
+Vertex -1.2899999999999998 -1.4 1.31 UV 1 0
+Vertex -1.2899999999999998 0 1.31 UV 1 1
+Vertex -1.51 0 1.31 UV 0 1
+Triangle 73 74 75
+Triangle 73 75 76
+Triangle 78 77 80
+Triangle 78 80 79
+Triangle 77 73 76
+Triangle 77 76 80
+Triangle 74 78 79
+Triangle 74 79 75
+Triangle 76 75 79
+Triangle 76 79 80
+Triangle 77 78 74
+Triangle 77 74 73
+Vertex -1.51 -1.4 2.29 UV 0 0
+Vertex -1.2899999999999998 -1.4 2.29 UV 1 0
+Vertex -1.2899999999999998 0 2.29 UV 1 1
+Vertex -1.51 0 2.29 UV 0 1
+Vertex -1.51 -1.4 2.51 UV 0 0
+Vertex -1.2899999999999998 -1.4 2.51 UV 1 0
+Vertex -1.2899999999999998 0 2.51 UV 1 1
+Vertex -1.51 0 2.51 UV 0 1
+Triangle 81 82 83
+Triangle 81 83 84
+Triangle 86 85 88
+Triangle 86 88 87
+Triangle 85 81 84
+Triangle 85 84 88
+Triangle 82 86 87
+Triangle 82 87 83
+Triangle 84 83 87
+Triangle 84 87 88
+Triangle 85 86 82
+Triangle 85 82 81
+Vertex -1.51 -1.4 3.4899999999999998 UV 0 0
+Vertex -1.2899999999999998 -1.4 3.4899999999999998 UV 1 0
+Vertex -1.2899999999999998 0 3.4899999999999998 UV 1 1
+Vertex -1.51 0 3.4899999999999998 UV 0 1
+Vertex -1.51 -1.4 3.7099999999999995 UV 0 0
+Vertex -1.2899999999999998 -1.4 3.7099999999999995 UV 1 0
+Vertex -1.2899999999999998 0 3.7099999999999995 UV 1 1
+Vertex -1.51 0 3.7099999999999995 UV 0 1
+Triangle 89 90 91
+Triangle 89 91 92
+Triangle 94 93 96
+Triangle 94 96 95
+Triangle 93 89 92
+Triangle 93 92 96
+Triangle 90 94 95
+Triangle 90 95 91
+Triangle 92 91 95
+Triangle 92 95 96
+Triangle 93 94 90
+Triangle 93 90 89
+Vertex -1.51 -1.4 4.6899999999999995 UV 0 0
+Vertex -1.2899999999999998 -1.4 4.6899999999999995 UV 1 0
+Vertex -1.2899999999999998 0 4.6899999999999995 UV 1 1
+Vertex -1.51 0 4.6899999999999995 UV 0 1
+Vertex -1.51 -1.4 4.91 UV 0 0
+Vertex -1.2899999999999998 -1.4 4.91 UV 1 0
+Vertex -1.2899999999999998 0 4.91 UV 1 1
+Vertex -1.51 0 4.91 UV 0 1
+Triangle 97 98 99
+Triangle 97 99 100
+Triangle 102 101 104
+Triangle 102 104 103
+Triangle 101 97 100
+Triangle 101 100 104
+Triangle 98 102 103
+Triangle 98 103 99
+Triangle 100 99 103
+Triangle 100 103 104
+Triangle 101 102 98
+Triangle 101 98 97
+Vertex 1.2899999999999998 -1.4 -0.11 UV 0 0
+Vertex 1.51 -1.4 -0.11 UV 1 0
+Vertex 1.51 0 -0.11 UV 1 1
+Vertex 1.2899999999999998 0 -0.11 UV 0 1
+Vertex 1.2899999999999998 -1.4 0.11 UV 0 0
+Vertex 1.51 -1.4 0.11 UV 1 0
+Vertex 1.51 0 0.11 UV 1 1
+Vertex 1.2899999999999998 0 0.11 UV 0 1
+Triangle 105 106 107
+Triangle 105 107 108
+Triangle 110 109 112
+Triangle 110 112 111
+Triangle 109 105 108
+Triangle 109 108 112
+Triangle 106 110 111
+Triangle 106 111 107
+Triangle 108 107 111
+Triangle 108 111 112
+Triangle 109 110 106
+Triangle 109 106 105
+Vertex 1.2899999999999998 -1.4 1.0899999999999999 UV 0 0
+Vertex 1.51 -1.4 1.0899999999999999 UV 1 0
+Vertex 1.51 0 1.0899999999999999 UV 1 1
+Vertex 1.2899999999999998 0 1.0899999999999999 UV 0 1
+Vertex 1.2899999999999998 -1.4 1.31 UV 0 0
+Vertex 1.51 -1.4 1.31 UV 1 0
+Vertex 1.51 0 1.31 UV 1 1
+Vertex 1.2899999999999998 0 1.31 UV 0 1
+Triangle 113 114 115
+Triangle 113 115 116
+Triangle 118 117 120
+Triangle 118 120 119
+Triangle 117 113 116
+Triangle 117 116 120
+Triangle 114 118 119
+Triangle 114 119 115
+Triangle 116 115 119
+Triangle 116 119 120
+Triangle 117 118 114
+Triangle 117 114 113
+Vertex 1.2899999999999998 -1.4 2.29 UV 0 0
+Vertex 1.51 -1.4 2.29 UV 1 0
+Vertex 1.51 0 2.29 UV 1 1
+Vertex 1.2899999999999998 0 2.29 UV 0 1
+Vertex 1.2899999999999998 -1.4 2.51 UV 0 0
+Vertex 1.51 -1.4 2.51 UV 1 0
+Vertex 1.51 0 2.51 UV 1 1
+Vertex 1.2899999999999998 0 2.51 UV 0 1
+Triangle 121 122 123
+Triangle 121 123 124
+Triangle 126 125 128
+Triangle 126 128 127
+Triangle 125 121 124
+Triangle 125 124 128
+Triangle 122 126 127
+Triangle 122 127 123
+Triangle 124 123 127
+Triangle 124 127 128
+Triangle 125 126 122
+Triangle 125 122 121
+Vertex 1.2899999999999998 -1.4 3.4899999999999998 UV 0 0
+Vertex 1.51 -1.4 3.4899999999999998 UV 1 0
+Vertex 1.51 0 3.4899999999999998 UV 1 1
+Vertex 1.2899999999999998 0 3.4899999999999998 UV 0 1
+Vertex 1.2899999999999998 -1.4 3.7099999999999995 UV 0 0
+Vertex 1.51 -1.4 3.7099999999999995 UV 1 0
+Vertex 1.51 0 3.7099999999999995 UV 1 1
+Vertex 1.2899999999999998 0 3.7099999999999995 UV 0 1
+Triangle 129 130 131
+Triangle 129 131 132
+Triangle 134 133 136
+Triangle 134 136 135
+Triangle 133 129 132
+Triangle 133 132 136
+Triangle 130 134 135
+Triangle 130 135 131
+Triangle 132 131 135
+Triangle 132 135 136
+Triangle 133 134 130
+Triangle 133 130 129
+Vertex 1.2899999999999998 -1.4 4.6899999999999995 UV 0 0
+Vertex 1.51 -1.4 4.6899999999999995 UV 1 0
+Vertex 1.51 0 4.6899999999999995 UV 1 1
+Vertex 1.2899999999999998 0 4.6899999999999995 UV 0 1
+Vertex 1.2899999999999998 -1.4 4.91 UV 0 0
+Vertex 1.51 -1.4 4.91 UV 1 0
+Vertex 1.51 0 4.91 UV 1 1
+Vertex 1.2899999999999998 0 4.91 UV 0 1
+Triangle 137 138 139
+Triangle 137 139 140
+Triangle 142 141 144
+Triangle 142 144 143
+Triangle 141 137 140
+Triangle 141 140 144
+Triangle 138 142 143
+Triangle 138 143 139
+Triangle 140 139 143
+Triangle 140 143 144
+Triangle 141 142 138
+Triangle 141 138 137
+ClumpEnd
+ModelEnd

@@ -483,117 +483,89 @@ export function threeToRWX(root) {
     const index =
       geometry.getIndex();
 
-    const mat =
-      Array.isArray(
-        obj.material
-      )
-        ? obj.material[0]
-        : obj.material;
+      const materials =
+        Array.isArray(obj.material)
+          ? obj.material
+          : [obj.material];
 
-    const color =
-      mat?.color ||
-      new THREE.Color(
-        0.8,
-        0.8,
-        0.8
-      );
+      const writeMaterial = mat => {
+        const color =
+          mat?.color ||
+          new THREE.Color(0.8, 0.8, 0.8);
 
-    const rwx =
-      mat?.userData?.rwx || {};
+        const rwx =
+          mat?.userData?.rwx || {};
 
-    if (rwx.texture) {
-      lines.push(
-        `Texture ${rwx.texture}`
-      );
-    }
+        if (rwx.texture) {
+          lines.push(`Texture ${rwx.texture}`);
+        }
 
-    if (rwx.surface) {
-      lines.push(
-        `Surface ${rwx.surface.join(" ")}`
-      );
-    }
+        if (rwx.surface) {
+          lines.push(`Surface ${rwx.surface.join(" ")}`);
+        }
 
-    if (
-      typeof rwx.opacity === "number" &&
-      rwx.opacity < 1
-    ) {
-      lines.push(
-        `Opacity ${rwx.opacity}`
-      );
-    }
+        if (
+          typeof rwx.opacity === "number" &&
+          rwx.opacity < 1
+        ) {
+          lines.push(`Opacity ${rwx.opacity}`);
+        }
 
-    lines.push(
-      `Color ${color.r} ${color.g} ${color.b}`
-    );
+        lines.push(`Color ${color.r} ${color.g} ${color.b}`);
+      };
 
-    for (
-      let i = 0;
-      i < position.count;
-      i++
-    ) {
-      const x =
-        position.getX(i);
-
-      const y =
-        position.getY(i);
-
-      const z =
-        position.getZ(i);
-
-      if (uv) {
-        const u =
-          uv.getX(i);
-
-        const v =
-          uv.getY(i);
-
+      const writeTriangle = (a, b, c) => {
         lines.push(
-          `Vertex ${x} ${y} ${z} UV ${u} ${v}`
+          `Triangle ${a + vertexOffset} ${b + vertexOffset} ${c + vertexOffset}`
         );
-      } else {
-        lines.push(
-          `Vertex ${x} ${y} ${z}`
-        );
-      }
-    }
+      };
 
-    if (index) {
-      for (
-        let i = 0;
-        i < index.count;
-        i += 3
-      ) {
-        lines.push(
-          `Triangle ${
-            index.getX(i) +
-            vertexOffset
-          } ${
-            index.getX(i + 1) +
-            vertexOffset
-          } ${
-            index.getX(i + 2) +
-            vertexOffset
-          }`
-        );
-      }
-    } else {
       for (
         let i = 0;
         i < position.count;
-        i += 3
+        i++
       ) {
-        lines.push(
-          `Triangle ${
-            i + vertexOffset
-          } ${
-            i + 1 + vertexOffset
-          } ${
-            i + 2 + vertexOffset
-          }`
-        );
-      }
-    }
+        const x = position.getX(i);
+        const y = position.getY(i);
+        const z = position.getZ(i);
 
+        if (uv) {
+          lines.push(
+            `Vertex ${x} ${y} ${z} UV ${uv.getX(i)} ${uv.getY(i)}`
+          );
+        } else {
+          lines.push(`Vertex ${x} ${y} ${z}`);
+        }
+      }
+
+      const groups =
+        geometry.groups && geometry.groups.length
+          ? geometry.groups
+          : [{
+              start: 0,
+              count: index ? index.count : position.count,
+              materialIndex: 0
+            }];
+
+      for (const group of groups) {
+        writeMaterial(materials[group.materialIndex] || materials[0]);
+
+        const groupEnd = group.start + group.count;
+
+        if (index) {
+          for (let i = group.start; i < groupEnd; i += 3) {
+            writeTriangle(
+              index.getX(i),
+              index.getX(i + 1),
+              index.getX(i + 2)
+            );
+          }
+        } else {
+          for (let i = group.start; i < groupEnd; i += 3) {
+            writeTriangle(i, i + 1, i + 2);
+          }
+        }
+      }
     vertexOffset +=
       position.count;
   });

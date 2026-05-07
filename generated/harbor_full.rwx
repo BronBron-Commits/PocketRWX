@@ -1,0 +1,133 @@
+ModelBegin
+ProtoBegin post
+Surface 0.7 0.9 0.05
+Color 0.28 0.16 0.07
+Cylinder 1.2 0.12 0.12 12
+ProtoEnd
+ProtoBegin barrel
+Surface 0.7 0.85 0.05
+Color 0.45 0.24 0.09
+Cylinder 1 0.32 0.32 18
+ProtoEnd
+ClumpBegin
+Color 0.42 0.25 0.12
+TransformBegin
+Translate 0 0 0
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 0.75
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 1.5
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 2.25
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 3
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 3.75
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 4.5
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate 0 0 5.25
+Scale 3.5 0.18 0.5
+Block 1 1 1
+TransformEnd
+TransformBegin
+Translate -1.5 -0.4 4
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate -1.5 -0.4 5.1
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate -1.5 -0.4 6.2
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate -1.5 -0.4 7.300000000000001
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate -1.5 -0.4 8.4
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate -1.5 -0.4 9.5
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate 1.5 -0.4 4
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate 1.5 -0.4 5.1
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate 1.5 -0.4 6.2
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate 1.5 -0.4 7.300000000000001
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate 1.5 -0.4 8.4
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate 1.5 -0.4 9.5
+ProtoInstance post
+TransformEnd
+TransformBegin
+Translate -3 0.5 -2
+Rotate 0 1 0 0
+ProtoInstance barrel
+TransformEnd
+TransformBegin
+Translate -1.8 0.5 -2
+Rotate 0 1 0 18
+ProtoInstance barrel
+TransformEnd
+TransformBegin
+Translate -0.6000000000000001 0.5 -2
+Rotate 0 1 0 36
+ProtoInstance barrel
+TransformEnd
+TransformBegin
+Translate 0.5999999999999996 0.5 -2
+Rotate 0 1 0 54
+ProtoInstance barrel
+TransformEnd
+TransformBegin
+Translate 1.7999999999999998 0.5 -2
+Rotate 0 1 0 72
+ProtoInstance barrel
+TransformEnd
+TransformBegin
+Translate 3 0.5 -2
+Rotate 0 1 0 90
+ProtoInstance barrel
+TransformEnd
+ClumpEnd
+ModelEnd

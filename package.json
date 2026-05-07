@@ -17,8 +17,13 @@
     "test:all": "npm run test:convert && npm run test:sidecar"
   },
   "dependencies": {
-    "vite": "latest",
-    "three": "latest"
+    "@gltf-transform/core": "^4.3.0",
+    "@gltf-transform/extensions": "^4.3.0",
+    "draco3d": "^1.5.7",
+    "three": "latest",
+    "vite": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@gltf-transform/cli": "^4.3.0"
+  }
 }

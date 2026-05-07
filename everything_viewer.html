@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Everything RWX Viewer</title>
+
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050505;
+  font-family: sans-serif;
+}
+
+#hud {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  font-size: 14px;
+}
+
+canvas {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<div id="hud">
+  Loading everything_textured.rwx...
+</div>
+
+<script type="module">
+import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050505);
+
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  10000
+);
+
+camera.position.set(0, 40, 120);
+
+const renderer = new THREE.WebGLRenderer({
+  antialias: true
+});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 20, 0);
+controls.update();
+
+scene.add(new THREE.AmbientLight(0xffffff, 1.6));
+
+const dir = new THREE.DirectionalLight(0xffffff, 2.2);
+dir.position.set(100, 200, 100);
+scene.add(dir);
+
+const grid = new THREE.GridHelper(1000, 100);
+grid.material.opacity = 0.25;
+grid.material.transparent = true;
+scene.add(grid);
+
+function parseVertex(parts) {
+  return new THREE.Vector3(
+    parseFloat(parts[1]),
+    parseFloat(parts[2]),
+    parseFloat(parts[3])
+  );
+}
+
+async function loadRWX(url) {
+  const hud = document.getElementById("hud");
+
+  const text = await fetch(url).then(r => r.text());
+
+  const lines = text.split(/\r?\n/);
+
+  const vertices = [];
+  const group = new THREE.Group();
+
+  let currentTexture = null;
+
+  let positions = [];
+  let uvs = [];
+
+  function flushMesh() {
+    if (!positions.length) return;
+
+    const geometry = new THREE.BufferGeometry();
+
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(positions, 3)
+    );
+
+    if (uvs.length) {
+      geometry.setAttribute(
+        "uv",
+        new THREE.Float32BufferAttribute(uvs, 2)
+      );
+    }
+
+    geometry.computeVertexNormals();
+
+    let material;
+
+    if (currentTexture) {
+      const tex = new THREE.TextureLoader().load(currentTexture);
+      tex.flipY = false;
+
+      material = new THREE.MeshStandardMaterial({
+        map: tex
+      });
+    } else {
+      material = new THREE.MeshStandardMaterial({
+        color: 0xcccccc
+      });
+    }
+
+    const mesh = new THREE.Mesh(geometry, material);
+    group.add(mesh);
+
+    positions = [];
+    uvs = [];
+  }
+
+  for (const line of lines) {
+    if (!line.trim()) continue;
+
+    const parts = line.trim().split(/\s+/);
+
+    if (parts[0] === "Vertex") {
+      vertices.push(parseVertex(parts));
+    }
+
+    else if (parts[0] === "Texture") {
+      flushMesh();
+
+      currentTexture = parts.slice(1).join(" ");
+    }
+
+    else if (parts[0] === "Triangle") {
+      const a = vertices[parseInt(parts[1]) - 1];
+      const b = vertices[parseInt(parts[2]) - 1];
+      const c = vertices[parseInt(parts[3]) - 1];
+
+      if (!a || !b || !c) continue;
+
+      positions.push(
+        a.x, a.y, a.z,
+        b.x, b.y, b.z,
+        c.x, c.y, c.z
+      );
+
+      uvs.push(
+        0, 0,
+        1, 0,
+        1, 1
+      );
+    }
+  }
+
+  flushMesh();
+
+  scene.add(group);
+
+  const box = new THREE.Box3().setFromObject(group);
+  const size = new THREE.Vector3();
+  const center = new THREE.Vector3();
+
+  box.getSize(size);
+  box.getCenter(center);
+
+  group.position.sub(center);
+
+  const maxDim = Math.max(size.x, size.y, size.z);
+
+  camera.position.set(maxDim * 0.6, maxDim * 0.4, maxDim * 0.8);
+
+  controls.target.set(0, maxDim * 0.15, 0);
+  controls.update();
+
+  hud.innerHTML =
+    "Loaded everything_textured.rwx<br>" +
+    "Vertices: " + vertices.length.toLocaleString() + "<br>" +
+    "Size: " + Math.round(maxDim);
+}
+
+loadRWX("samples/real_glb/everything_json_exact.rwx");
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
+
+animate();
+</script>
+
+</body>
+</html>

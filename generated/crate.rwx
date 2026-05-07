@@ -1,0 +1,27 @@
+ModelBegin
+ClumpBegin
+Color 0.55 0.32 0.12
+Texture generated/textures/wood.svg
+TextureAddressMode wrap
+Vertex -1 -1 -1 UV 0 0
+Vertex 1 -1 -1 UV 1 0
+Vertex 1 1 -1 UV 1 1
+Vertex -1 1 -1 UV 0 1
+Vertex -1 -1 1 UV 0 0
+Vertex 1 -1 1 UV 1 0
+Vertex 1 1 1 UV 1 1
+Vertex -1 1 1 UV 0 1
+Triangle 1 2 3
+Triangle 1 3 4
+Triangle 6 5 8
+Triangle 6 8 7
+Triangle 5 1 4
+Triangle 5 4 8
+Triangle 2 6 7
+Triangle 2 7 3
+Triangle 4 3 7
+Triangle 4 7 8
+Triangle 5 6 2
+Triangle 5 2 1
+ClumpEnd
+ModelEnd

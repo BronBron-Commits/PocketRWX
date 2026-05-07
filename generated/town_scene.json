@@ -1,0 +1,52 @@
+{
+  "objects": [
+    {
+      "file": "generated/bookshelf.rwx",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/bookshelf.rwx",
+      "x": 5,
+      "y": 0,
+      "z": 0,
+      "scale": 1,
+      "yaw": 0.4
+    },
+    {
+      "file": "generated/bookshelf.rwx",
+      "x": -5,
+      "y": 0,
+      "z": 0,
+      "scale": 1,
+      "yaw": -0.4
+    },
+    {
+      "file": "generated/crate.rwx",
+      "x": 0,
+      "y": 0,
+      "z": 4,
+      "scale": 1,
+      "yaw": 0
+    },
+    {
+      "file": "generated/crate.rwx",
+      "x": 2,
+      "y": 0,
+      "z": 4,
+      "scale": 0.75,
+      "yaw": 0.2
+    },
+    {
+      "file": "generated/crate.rwx",
+      "x": -2,
+      "y": 0,
+      "z": 4,
+      "scale": 0.75,
+      "yaw": -0.2
+    }
+  ]
+}

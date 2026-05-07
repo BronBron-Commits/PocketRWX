@@ -1,0 +1,62 @@
+ModelBegin
+# Prototype barrel: defined once, reused many times
+ProtoBegin barrel_proto
+Surface 0.7 0.85 0.05
+TextureAddressMode wrap
+Color 0.45 0.24 0.09
+#! Seamless on
+Cylinder 1.4 0.35 0.35 20
+#! Seamless off
+ProtoEnd
+ClumpBegin
+TransformBegin
+Translate -3.5 0.7 0
+Rotate 0 1 0 0
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate -2.5 0.7 0
+Rotate 0 1 0 12
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate -1.5 0.7 0
+Rotate 0 1 0 24
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate -0.5 0.7 0
+Rotate 0 1 0 36
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate 0.5 0.7 0
+Rotate 0 1 0 48
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate 1.5 0.7 0
+Rotate 0 1 0 60
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate 2.5 0.7 0
+Rotate 0 1 0 72
+ProtoInstance barrel_proto
+TransformEnd
+TransformBegin
+Translate 3.5 0.7 0
+Rotate 0 1 0 84
+ProtoInstance barrel_proto
+TransformEnd
+MaterialBegin
+Surface 0.9 0.9 0.1
+Color 0.9 0.75 0.25
+Opacity 0.92
+MaterialEnd
+TransformBegin
+Translate 0 2.5 0
+Sphere 0.45 2
+TransformEnd
+ClumpEnd
+ModelEnd
