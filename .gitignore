@@ -4,3 +4,7 @@ tests/sidecar_reports/*
 !tests/sidecar_reports/metadata_transform.*
 tests/loss_reports/*.roundtrip.*
 tests/loss_reports/*.loss.json
+
+# local model conversion scratch files
+samples/
+tmp/

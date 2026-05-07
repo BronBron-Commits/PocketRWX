@@ -35,6 +35,7 @@ if (!globalThis.FileReader) {
 
 import { GLTFExporter } from "three/addons/exporters/GLTFExporter.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 
 export function threeToGLB(object3d) {
   return new Promise((resolve, reject) => {
